@@ -4,7 +4,24 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
+
 export default function SesizareNoua({ navigation }: RootTabScreenProps<'TabOne'>) {
+  const checkLocalStorage = async () => {
+    // get all required fields from local storage and show modal if not set
+    const localStorageArr = await AsyncStorage.multiGet(['nume', 'prenume', 'adresaLinie1', 'localitate', 'judet']);
+    // if any of those are empty strings or null, show modal
+    if (localStorageArr.some(([key, value]) => value === null || value === '')) {
+      navigation.navigate('Date Personale');
+    }
+    
+  }
+
+  useEffect(() => {
+    checkLocalStorage();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sesizare Noua</Text>

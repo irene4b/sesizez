@@ -8,7 +8,7 @@ import * as Location from 'expo-location';
 import { Text, View } from '../components/Themed';
 import React, { useEffect } from 'react';
 
-export default function ModalScreen() {
+export default function DatePersonale() {
   const [nume, setNume] = React.useState('');
   const [prenume, setPrenume] = React.useState('');
   const [adresaLinie1, setAdresaLinie1] = React.useState('');
@@ -93,16 +93,16 @@ export default function ModalScreen() {
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <Text style={styles.title}>Adresa de domiciliu</Text>
         <Button onPress={useCurrentLocation}>
-          Foloseste locatia curenta
+          Folosește locația curenta
         </Button>
         <Input
-          placeholder='Scrie aici...'
+          placeholder='Strada, numărul'
           label='Adresa linie 1'
           value={adresaLinie1}
           onChangeText={newAdresaLinie1 => setAdresaLinie1(newAdresaLinie1)}
         />
         <Input
-          placeholder='Scrie aici...'
+          placeholder='(Dacă e cazul) bloc, scară, apt, etaj'
           label='Adresa linie 2'
           value={adresaLinie2}
           onChangeText={newAdresaLinie2 => setAdresaLinie2(newAdresaLinie2)}
@@ -115,7 +115,7 @@ export default function ModalScreen() {
         />
         <Input
           placeholder='Scrie aici...'
-          label='Judet'
+          label='Județ sau sector'
           value={judet}
           onChangeText={newJudet => setJudet(newJudet)}
         />
