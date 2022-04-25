@@ -58,6 +58,11 @@ export default function SesizareNoua({
       setIsLoading(false);
       return;
     }
+    if(!images.length) {
+      Alert.alert('Trebuie să adaugi cel puțin o poză doveditoare.');
+      setIsLoading(false);
+      return;
+    }
     const personalData: userPersonalData = {
       nume: (await AsyncStorage.getItem('nume')) || '',
       prenume: (await AsyncStorage.getItem('prenume')) || '',
@@ -170,7 +175,7 @@ export default function SesizareNoua({
         </Button>
       </View>
       {isLoading ? (
-        <ActivityIndicator animating={true} size="large" color="black" />
+        <ActivityIndicator animating={true} size="large" color="gray" />
       ) : (
         <Button style={{ marginTop: 20 }} onPress={sendEmail}>
           Trimite
