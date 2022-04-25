@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps, userPersonalData } from '../types';
@@ -47,6 +47,8 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
     };
     const currentLocation = await getCurrentLocation();
     if(!currentLocation) {
+      setIsLoading(false);
+      Alert.alert('Eroare', 'Nu am putut obține locația curentă. Te rugăm să încerci din nou.'); 
       return;
     }
     await MailComposer.composeAsync({
