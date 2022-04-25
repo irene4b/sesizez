@@ -21,8 +21,8 @@ const items = [
     url: 'https://github.com/alexbulintis/sesizez/issues',
   },
   {
-    title: 'Adaugă un oraș nou',
-    description: 'Ajută-ne cu adrese de email ale autorităților din orașul tău',
+    title: 'Adaugă un oraş nou',
+    description: 'Ajută-ne cu adrese de email ale autorităților din oraşul tău',
     url: 'https://github.com/alexbulintis/sesizez/issues',
   },
   {
@@ -57,7 +57,7 @@ export default function DespreScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sesizez</Text>
-      <Text style={styles.subtitle}>Aplicație open-source susținută de Eumeo Tech și comunitate. Poți și tu să contribui!</Text>
+      <Text style={styles.subtitle}>Aplicație open-source susținută de Eumeo Tech şi comunitate. Poți şi tu să contribui!</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <List
         style={styles.list}
@@ -65,6 +65,7 @@ export default function DespreScreen() {
         ItemSeparatorComponent={Divider}
         renderItem={renderItem}
       />
+      <Text style={styles.subtitle} onPress={() => Linking.openURL('https://growupromania.ro/o-sesizare-se-face-mai-usor-decat-crezi/')}>Mulțumim Grow Up Romania pentru inspirație :)</Text>
     </View>
   );
 }
@@ -86,7 +87,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   list: {
-    maxHeight: 400,
+    maxHeight: 300,
+    backgroundColor: 'white',
   },
   separator: {
     marginVertical: 30,

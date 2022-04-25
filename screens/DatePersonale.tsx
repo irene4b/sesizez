@@ -99,7 +99,7 @@ export default function DatePersonale() {
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <Text style={styles.title}>Adresa de domiciliu</Text>
         <Button accessoryLeft={<Icon name='navigation-2-outline' />} onPress={useCurrentLocation} style={styles.margin}>
-          Folosește locația curenta
+          Foloseşte locația curenta
         </Button>
         <Input
           placeholder='Strada, numărul'
