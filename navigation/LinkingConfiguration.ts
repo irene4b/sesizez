@@ -10,14 +10,14 @@ import * as Linking from 'expo-linking';
 import { RootStackParamList } from '../types';
 
 const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: [Linking.makeUrl('/')],
+  prefixes: [Linking.createURL('sesizez://')],
   config: {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          SesizareNoua: {
             screens: {
-              TabOneScreen: 'one',
+              SesizareNouaScreen: 'one',
             },
           },
           TabTwo: {

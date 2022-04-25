@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, Platform, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Alert, Linking, Platform, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Button, IndexPath, Input, Select, SelectItem } from '@ui-kitten/components';
+import { Button, Icon, Input } from '@ui-kitten/components';
 import * as Location from 'expo-location';
 import { Text, View } from '../components/Themed';
 import React, { useEffect } from 'react';
@@ -72,6 +72,11 @@ export default function DatePersonale() {
     console.log(response);
   }
 
+  const saveAndAlert = () => {
+    saveAllInAsyncStorage();
+    Alert.alert('Datele au fost salvate.');
+  }
+
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
@@ -82,6 +87,7 @@ export default function DatePersonale() {
           placeholder='Scrie aici...'
           label='Nume de familie'
           value={nume}
+          style={styles.margin}
           onChangeText={newNume => setNume(newNume)}
         />
         <Input
@@ -92,34 +98,43 @@ export default function DatePersonale() {
         />
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <Text style={styles.title}>Adresa de domiciliu</Text>
-        <Button onPress={useCurrentLocation}>
+        <Button accessoryLeft={<Icon name='navigation-2-outline' />} onPress={useCurrentLocation} style={styles.margin}>
           Folosește locația curenta
         </Button>
         <Input
           placeholder='Strada, numărul'
           label='Adresa linie 1'
           value={adresaLinie1}
+          style={styles.margin}
           onChangeText={newAdresaLinie1 => setAdresaLinie1(newAdresaLinie1)}
         />
         <Input
           placeholder='(Dacă e cazul) bloc, scară, apt, etaj'
           label='Adresa linie 2'
           value={adresaLinie2}
+          style={styles.margin}
           onChangeText={newAdresaLinie2 => setAdresaLinie2(newAdresaLinie2)}
         />
         <Input
           placeholder='Scrie aici...'
           label='Localitate'
           value={localitate}
+          style={styles.margin}
           onChangeText={newLocalitate => setLocalitate(newLocalitate)}
         />
         <Input
           placeholder='Scrie aici...'
           label='Județ sau sector'
           value={judet}
+          style={styles.margin}
           onChangeText={newJudet => setJudet(newJudet)}
         />
+        <Button onPress={saveAndAlert}>
+          Salvează datele
+        </Button>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+        
 
         {/* Use a light status bar on iOS to account for the black space above the modal */}
         <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
@@ -148,4 +163,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  margin: {
+    marginBottom: 10,
+  }
 });

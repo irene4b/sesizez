@@ -58,16 +58,16 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="SesizareNoua"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="SesizareNoua"
         component={SesizareNouaScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        options={({ navigation }: RootTabScreenProps<'SesizareNoua'>) => ({
+          title: 'Sesizare Nouă',
+          tabBarIcon: ({ color }) => <TabBarIcon name="sticky-note" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Date Personale')}
@@ -75,7 +75,7 @@ function BottomTabNavigator() {
                 opacity: pressed ? 0.5 : 1,
               })}>
               <FontAwesome
-                name="info-circle"
+                name="user"
                 size={25}
                 color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
@@ -88,8 +88,8 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Despre',
+          tabBarIcon: ({ color }) => <TabBarIcon name="question" color={color} />,
         }}
       />
     </BottomTab.Navigator>
