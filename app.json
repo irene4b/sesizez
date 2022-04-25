@@ -2,6 +2,7 @@
   "expo": {
     "name": "sesizez",
     "slug": "sesizez",
+    "owner": "alexbulintis0",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
