@@ -33,3 +33,21 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+export type userPersonalData = {
+  nume: string;
+  prenume: string;
+  adresaLinie1: string;
+  adresaLinie2: string;
+  judet: string;
+  localitate: string;
+}
+
+export type reportedLocation = {
+  lat: number;
+  lng: number;
+  adresaLinie1: string;
+  adresaLinie2: string;
+  judet: string;
+  localitate: string;
+}
