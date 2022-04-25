@@ -18,15 +18,6 @@ export const getCurrentLocation = async (): Promise<reportedLocation | undefined
 
   });
 
-  console.log({
-    adresaLinie1: `Str. ${response[0].street}, nr. ${response[0].streetNumber}`,
-    adresaLinie2: '',
-    localitate: response[0].city || '',
-    judet: response[0].district?.replace('Bucureşti ', '').replace('Bucharest ', '') || '',
-    lat: latitude,
-    lng: longitude
-  });
-
   if(!response[0].name) return;
   return {
     adresaLinie1: `Str. ${response[0].street}, nr. ${response[0].streetNumber}`,
