@@ -1,4 +1,9 @@
-import { ActivityIndicator, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps, userPersonalData } from '../types';
@@ -16,23 +21,31 @@ import { getHeadingAsync } from 'expo-location';
 
 const templates = [trotuarBlocatMasini, trotuarDegradat];
 
-
-export default function SesizareNoua({ navigation }: RootTabScreenProps<'SesizareNoua'>) {
+export default function SesizareNoua({
+  navigation,
+}: RootTabScreenProps<'SesizareNoua'>) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [images, setImages] = useState<Array<string>>([]);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const checkLocalStorage = async () => {
     // get all required fields from local storage and show modal if not set
-    const localStorageArr = await AsyncStorage.multiGet(['nume', 'prenume', 'adresaLinie1', 'localitate', 'judet']);
+    const localStorageArr = await AsyncStorage.multiGet([
+      'nume',
+      'prenume',
+      'adresaLinie1',
+      'localitate',
+      'judet',
+    ]);
     // if any of those are empty strings or null, show modal
-    if (localStorageArr.some(([key, value]) => value === null || value === '')) {
+    if (
+      localStorageArr.some(([key, value]) => value === null || value === '')
+    ) {
       navigation.navigate('Date Personale');
       return false;
     }
     return true;
-    
-  }
+  };
 
   useEffect(() => {
     checkLocalStorage();
@@ -41,36 +54,45 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
   const sendEmail = async () => {
     setIsLoading(true);
     const isProfileCompleted = await checkLocalStorage();
-    if(!isProfileCompleted) {
+    if (!isProfileCompleted) {
       setIsLoading(false);
       return;
     }
     const personalData: userPersonalData = {
-      nume: await AsyncStorage.getItem('nume') || '',
-      prenume: await AsyncStorage.getItem('prenume') || '',
-      adresaLinie1: await AsyncStorage.getItem('adresaLinie1') || '',
-      adresaLinie2: await AsyncStorage.getItem('adresaLinie2') || '',
-      localitate: await AsyncStorage.getItem('localitate') || '',
-      judet: await AsyncStorage.getItem('judet') || '',
+      nume: (await AsyncStorage.getItem('nume')) || '',
+      prenume: (await AsyncStorage.getItem('prenume')) || '',
+      adresaLinie1: (await AsyncStorage.getItem('adresaLinie1')) || '',
+      adresaLinie2: (await AsyncStorage.getItem('adresaLinie2')) || '',
+      localitate: (await AsyncStorage.getItem('localitate')) || '',
+      judet: (await AsyncStorage.getItem('judet')) || '',
     };
     const currentLocation = await getCurrentLocation();
-    if(!currentLocation) {
+    if (!currentLocation) {
       setIsLoading(false);
-      Alert.alert('Eroare', 'Nu am putut obține locația curentă. Te rugăm să încerci din nou.'); 
+      Alert.alert(
+        'Eroare',
+        'Nu am putut obține locația curentă. Te rugăm să încerci din nou.'
+      );
       return;
     }
-    try{
+    try {
       await MailComposer.composeAsync({
         body: templates[selectedIndex].generator(personalData, currentLocation),
         subject: templates[selectedIndex].title,
-        recipients: templates[selectedIndex].destination(currentLocation.localitate, currentLocation.judet),
+        recipients: templates[selectedIndex].destination(
+          currentLocation.localitate,
+          currentLocation.judet
+        ),
         attachments: images,
       });
-    } catch(e) {
-      Alert.alert('Eroare', 'Nu am putut trimite emailul. Te rugăm să încerci din nou.');
+    } catch (e) {
+      Alert.alert(
+        'Eroare',
+        'Nu am putut trimite emailul. Te rugăm să încerci din nou.'
+      );
     }
     setIsLoading(false);
-  }
+  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -104,35 +126,56 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sesizare rapidă</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <View
+        style={styles.separator}
+        lightColor="#eee"
+        darkColor="rgba(255,255,255,0.1)"
+      />
       <Text style={styles.label}>Tip sesizare:</Text>
       <RadioGroup
         selectedIndex={selectedIndex}
-        onChange={index => setSelectedIndex(index)}
+        onChange={(index) => setSelectedIndex(index)}
       >
-        {templates.map(template => (
+        {templates.map((template) => (
           <Radio key={template.title}>{template.title}</Radio>
         ))}
       </RadioGroup>
       <Text style={styles.label}>Imagini:</Text>
       <View style={styles.imagessContainer}>
         {images.map((img, index) => (
-          <TouchableOpacity key={`to-${index}`} activeOpacity={0.5} onPress={() => removeImage(index)}>
-            <Image 
-              key={index} 
-              source={{ uri: img }} 
-              style={{ width: 50, height: 50, marginRight: 5 }} 
+          <TouchableOpacity
+            key={`to-${index}`}
+            activeOpacity={0.5}
+            onPress={() => removeImage(index)}
+          >
+            <Image
+              key={index}
+              source={{ uri: img }}
+              style={{ width: 50, height: 50, marginRight: 5 }}
             />
           </TouchableOpacity>
         ))}
-        <Button style={{ width: 50, height: 50, marginRight: 5}} onPress={pickImage}>+</Button>
-        <Button style={{ width: 50, height: 50, paddingLeft: 30}} onPress={shootImage} accessoryLeft={<Icon name="camera" />}>
+        <Button
+          style={{ width: 50, height: 50, marginRight: 5 }}
+          onPress={pickImage}
+        >
+          +
+        </Button>
+        <Button
+          style={{ width: 50, height: 50, paddingLeft: 30 }}
+          onPress={shootImage}
+          accessoryLeft={<Icon name="camera" />}
+        >
           &nbsp;
         </Button>
       </View>
-      {isLoading ? <ActivityIndicator animating={true} size="large" color='black' />: <Button style={{marginTop: 20}} onPress={sendEmail}>Trimite</Button>}
-      
-      
+      {isLoading ? (
+        <ActivityIndicator animating={true} size="large" color="black" />
+      ) : (
+        <Button style={{ marginTop: 20 }} onPress={sendEmail}>
+          Trimite
+        </Button>
+      )}
     </View>
   );
 }
@@ -141,13 +184,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: '5%'
+    padding: '5%',
   },
   imagessContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
-    marginTop: 20
+    marginTop: 20,
   },
   title: {
     fontSize: 20,
@@ -167,5 +210,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 5,
     fontWeight: 'bold',
-  }
+  },
 });

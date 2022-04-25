@@ -1,5 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, KeyboardAvoidingView, Linking, Platform, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Linking,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -28,11 +36,17 @@ export default function DatePersonale() {
   const getAllFromAsyncStorage = () => {
     AsyncStorage.getItem('nume').then((value) => setNume(value || ''));
     AsyncStorage.getItem('prenume').then((value) => setPrenume(value || ''));
-    AsyncStorage.getItem('adresaLinie1').then((value) => setAdresaLinie1(value || ''));
-    AsyncStorage.getItem('adresaLinie2').then((value) => setAdresaLinie2(value || ''));
-    AsyncStorage.getItem('localitate').then((value) => setLocalitate(value || ''));
+    AsyncStorage.getItem('adresaLinie1').then((value) =>
+      setAdresaLinie1(value || '')
+    );
+    AsyncStorage.getItem('adresaLinie2').then((value) =>
+      setAdresaLinie2(value || '')
+    );
+    AsyncStorage.getItem('localitate').then((value) =>
+      setLocalitate(value || '')
+    );
     AsyncStorage.getItem('judet').then((value) => setJudet(value || ''));
-  }
+  };
 
   useEffect(() => {
     getAllFromAsyncStorage();
@@ -43,9 +57,11 @@ export default function DatePersonale() {
   }, [nume, prenume, adresaLinie1, adresaLinie2, localitate, judet]);
 
   const createMissingLocationPermissionAlert = () =>
-    Alert.alert('Eroare', 'Permisiunea pentru locatie este necesara pentru autocompletarea adresei.', [
-      { text: 'OK' },
-    ]);
+    Alert.alert(
+      'Eroare',
+      'Permisiunea pentru locatie este necesara pentru autocompletarea adresei.',
+      [{ text: 'OK' }]
+    );
 
   const useCurrentLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -58,87 +74,106 @@ export default function DatePersonale() {
     const { latitude, longitude } = coords;
     let response = await Location.reverseGeocodeAsync({
       latitude,
-      longitude
+      longitude,
     });
 
-    if(!response[0].name) return;
+    if (!response[0].name) return;
 
-    setAdresaLinie1(`Str. ${response[0].street}, nr. ${response[0].streetNumber}`);
+    setAdresaLinie1(
+      `Str. ${response[0].street}, nr. ${response[0].streetNumber}`
+    );
     setLocalitate(response[0].city || '');
 
-    if(response[0].city === 'Bucureşti')
+    if (response[0].city === 'Bucureşti')
       setJudet(response[0].district?.replace('Bucureşti ', '') || '');
-  }
+  };
 
   const saveAndAlert = () => {
     saveAllInAsyncStorage();
     Alert.alert('Datele au fost salvate.');
-  }
+  };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-    <SafeAreaView>
-      <ScrollView style={styles.container}>
-        <Text style={styles.subtitle}>Bun venit! Înainte de a putea face sesizări avem nevoie de câteva date personale. Acestea sunt necesare pentru înregistrarea oficială a sesizărilor.</Text>
-        <Text style={styles.subtitle}>Datele sunt salvate în siguranță pe telefonul tău. Schimbările sunt salvate automat.</Text>
-        <Text style={styles.title}>Nume complet</Text>
-        <Input
-          placeholder='Scrie aici...'
-          label='Nume de familie'
-          value={nume}
-          style={styles.margin}
-          onChangeText={newNume => setNume(newNume)}
-        />
-        <Input
-          placeholder='Scrie aici...'
-          label='Prenume'
-          value={prenume}
-          onChangeText={newPrenume => setPrenume(newPrenume)}
-        />
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Text style={styles.title}>Adresa de domiciliu</Text>
-        <Button accessoryLeft={<Icon name='navigation-2-outline' />} onPress={useCurrentLocation} style={styles.margin}>
-          Foloseşte locația curenta
-        </Button>
-        <Input
-          placeholder='Strada, numărul'
-          label='Adresa linie 1'
-          value={adresaLinie1}
-          style={styles.margin}
-          onChangeText={newAdresaLinie1 => setAdresaLinie1(newAdresaLinie1)}
-        />
-        <Input
-          placeholder='(Dacă e cazul) bloc, scară, apt, etaj'
-          label='Adresa linie 2'
-          value={adresaLinie2}
-          style={styles.margin}
-          onChangeText={newAdresaLinie2 => setAdresaLinie2(newAdresaLinie2)}
-        />
-        <Input
-          placeholder='Scrie aici...'
-          label='Localitate'
-          value={localitate}
-          style={styles.margin}
-          onChangeText={newLocalitate => setLocalitate(newLocalitate)}
-        />
-        <Input
-          placeholder='Scrie aici...'
-          label='Județ sau sector'
-          value={judet}
-          style={styles.margin}
-          onChangeText={newJudet => setJudet(newJudet)}
-        />
-        <Button onPress={saveAndAlert}>
-          Salvează datele
-        </Button>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <SafeAreaView>
+        <ScrollView style={styles.container}>
+          <Text style={styles.subtitle}>
+            Bun venit! Înainte de a putea face sesizări avem nevoie de câteva
+            date personale. Acestea sunt necesare pentru înregistrarea oficială
+            a sesizărilor.
+          </Text>
+          <Text style={styles.subtitle}>
+            Datele sunt salvate în siguranță pe telefonul tău. Schimbările sunt
+            salvate automat.
+          </Text>
+          <Text style={styles.title}>Nume complet</Text>
+          <Input
+            placeholder="Scrie aici..."
+            label="Nume de familie"
+            value={nume}
+            style={styles.margin}
+            onChangeText={(newNume) => setNume(newNume)}
+          />
+          <Input
+            placeholder="Scrie aici..."
+            label="Prenume"
+            value={prenume}
+            onChangeText={(newPrenume) => setPrenume(newPrenume)}
+          />
+          <View
+            style={styles.separator}
+            lightColor="#eee"
+            darkColor="rgba(255,255,255,0.1)"
+          />
+          <Text style={styles.title}>Adresa de domiciliu</Text>
+          <Button
+            accessoryLeft={<Icon name="navigation-2-outline" />}
+            onPress={useCurrentLocation}
+            style={styles.margin}
+          >
+            Foloseşte locația curenta
+          </Button>
+          <Input
+            placeholder="Strada, numărul"
+            label="Adresa linie 1"
+            value={adresaLinie1}
+            style={styles.margin}
+            onChangeText={(newAdresaLinie1) => setAdresaLinie1(newAdresaLinie1)}
+          />
+          <Input
+            placeholder="(Dacă e cazul) bloc, scară, apt, etaj"
+            label="Adresa linie 2"
+            value={adresaLinie2}
+            style={styles.margin}
+            onChangeText={(newAdresaLinie2) => setAdresaLinie2(newAdresaLinie2)}
+          />
+          <Input
+            placeholder="Scrie aici..."
+            label="Localitate"
+            value={localitate}
+            style={styles.margin}
+            onChangeText={(newLocalitate) => setLocalitate(newLocalitate)}
+          />
+          <Input
+            placeholder="Scrie aici..."
+            label="Județ sau sector"
+            value={judet}
+            style={styles.margin}
+            onChangeText={(newJudet) => setJudet(newJudet)}
+          />
+          <Button onPress={saveAndAlert}>Salvează datele</Button>
+          <View
+            style={styles.separator}
+            lightColor="#eee"
+            darkColor="rgba(255,255,255,0.1)"
+          />
 
-        
-
-        {/* Use a light status bar on iOS to account for the black space above the modal */}
-        <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-      </ScrollView>
-    </SafeAreaView>
+          {/* Use a light status bar on iOS to account for the black space above the modal */}
+          <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+        </ScrollView>
+      </SafeAreaView>
     </KeyboardAvoidingView>
   );
 }
@@ -165,5 +200,5 @@ const styles = StyleSheet.create({
   },
   margin: {
     marginBottom: 10,
-  }
+  },
 });

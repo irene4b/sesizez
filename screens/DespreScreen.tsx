@@ -1,6 +1,5 @@
 import { Linking, Share, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { Divider, List, ListItem } from '@ui-kitten/components';
 
@@ -10,8 +9,8 @@ type RenderItemType = {
     description: string;
     url?: string;
     share?: boolean;
-  },
-  index: number,
+  };
+  index: number;
 };
 
 const items = [
@@ -34,8 +33,8 @@ const items = [
     title: 'Distribuie aplicația',
     description: 'Distribuie aplicația prietenilor tăi',
     share: true,
-  }
-]
+  },
+];
 
 export default function DespreScreen() {
   const renderItem = ({ item, index }: RenderItemType) => (
@@ -57,15 +56,31 @@ export default function DespreScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sesizez</Text>
-      <Text style={styles.subtitle}>Aplicație open-source susținută de Eumeo Tech şi comunitate. Poți şi tu să contribui!</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <Text style={styles.subtitle}>
+        Aplicație open-source susținută de Eumeo Tech şi comunitate. Poți şi tu
+        să contribui!
+      </Text>
+      <View
+        style={styles.separator}
+        lightColor="#eee"
+        darkColor="rgba(255,255,255,0.1)"
+      />
       <List
         style={styles.list}
         data={items}
         ItemSeparatorComponent={Divider}
         renderItem={renderItem}
       />
-      <Text style={styles.subtitle} onPress={() => Linking.openURL('https://growupromania.ro/o-sesizare-se-face-mai-usor-decat-crezi/')}>Mulțumim Grow Up Romania pentru inspirație :)</Text>
+      <Text
+        style={styles.subtitle}
+        onPress={() =>
+          Linking.openURL(
+            'https://growupromania.ro/o-sesizare-se-face-mai-usor-decat-crezi/'
+          )
+        }
+      >
+        Mulțumim Grow Up Romania pentru inspirație :)
+      </Text>
     </View>
   );
 }
