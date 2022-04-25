@@ -12,6 +12,7 @@ import * as MailComposer from 'expo-mail-composer';
 import * as ImagePicker from 'expo-image-picker';
 import trotuarBlocatMasini from '../templates/trotuarBlocatMasini';
 import trotuarDegradat from '../templates/trotuarDegradat';
+import { getHeadingAsync } from 'expo-location';
 
 const templates = [trotuarBlocatMasini, trotuarDegradat];
 
@@ -27,7 +28,9 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
     // if any of those are empty strings or null, show modal
     if (localStorageArr.some(([key, value]) => value === null || value === '')) {
       navigation.navigate('Date Personale');
+      return false;
     }
+    return true;
     
   }
 
@@ -37,6 +40,11 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
 
   const sendEmail = async () => {
     setIsLoading(true);
+    const isProfileCompleted = await checkLocalStorage();
+    if(!isProfileCompleted) {
+      setIsLoading(false);
+      return;
+    }
     const personalData: userPersonalData = {
       nume: await AsyncStorage.getItem('nume') || '',
       prenume: await AsyncStorage.getItem('prenume') || '',
@@ -51,12 +59,16 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
       Alert.alert('Eroare', 'Nu am putut obține locația curentă. Te rugăm să încerci din nou.'); 
       return;
     }
-    await MailComposer.composeAsync({
-      body: templates[selectedIndex].generator(personalData, currentLocation),
-      subject: templates[selectedIndex].title,
-      recipients: templates[selectedIndex].destination(currentLocation.localitate, currentLocation.judet),
-      attachments: images,
-    });
+    try{
+      await MailComposer.composeAsync({
+        body: templates[selectedIndex].generator(personalData, currentLocation),
+        subject: templates[selectedIndex].title,
+        recipients: templates[selectedIndex].destination(currentLocation.localitate, currentLocation.judet),
+        attachments: images,
+      });
+    } catch(e) {
+      Alert.alert('Eroare', 'Nu am putut trimite emailul. Te rugăm să încerci din nou.');
+    }
     setIsLoading(false);
   }
 
