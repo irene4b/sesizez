@@ -20,11 +20,13 @@ import trotuarDegradat from '../templates/trotuarDegradat';
 import trecerePietoniVopseaStearsa from '../templates/trecerePietoniVopseaStearsa';
 import pistaBicicleteNesigura from '../templates/pistaBicicleteNesigura';
 import pistaBicicleteInexistenta from '../templates/pistaBicicleteInexistenta';
+import masiniParcateTrecere from '../templates/masiniParcateTrecere';
 
 const templates = [
   trotuarBlocatMasini,
   trotuarDegradat,
   trecerePietoniVopseaStearsa,
+  masiniParcateTrecere,
   pistaBicicleteNesigura,
   pistaBicicleteInexistenta,
 ];
