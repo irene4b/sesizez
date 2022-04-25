@@ -130,7 +130,7 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
           &nbsp;
         </Button>
       </View>
-      {isLoading ? <ActivityIndicator animating={true} size="large" />: <Button style={{marginTop: 20}} onPress={sendEmail}>Trimite</Button>}
+      {isLoading ? <ActivityIndicator animating={true} size="large" color='black' />: <Button style={{marginTop: 20}} onPress={sendEmail}>Trimite</Button>}
       
       
     </View>
