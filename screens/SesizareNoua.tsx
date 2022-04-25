@@ -6,7 +6,7 @@ import { RootTabScreenProps, userPersonalData } from '../types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { Image } from 'react-native';
-import { Button, Radio, RadioGroup } from '@ui-kitten/components';
+import { Button, Icon, Radio, RadioGroup } from '@ui-kitten/components';
 import { getCurrentLocation } from '../reusables/getCurrentLocation';
 import * as MailComposer from 'expo-mail-composer';
 import * as ImagePicker from 'expo-image-picker';
@@ -69,6 +69,19 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
     }
   };
 
+  const shootImage = async () => {
+    await ImagePicker.requestCameraPermissionsAsync();
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0,
+    });
+
+    if (!result.cancelled && result.uri) {
+      setImages([...images, result.uri]);
+    }
+  };
+
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
   };
@@ -97,7 +110,10 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
             />
           </TouchableOpacity>
         ))}
-        <Button style={{ alignSelf: 'flex-end', width: 50, height: 50}} onPress={pickImage}>+</Button>
+        <Button style={{ width: 50, height: 50, marginRight: 5}} onPress={pickImage}>+</Button>
+        <Button style={{ width: 50, height: 50}} onPress={shootImage} accessoryLeft={<Icon name="camera" />}>
+          &nbsp;
+        </Button>
       </View>
       {isLoading ? <ActivityIndicator animating={true} size="large" />: <Button style={{marginTop: 20}} onPress={sendEmail}>Trimite</Button>}
       
