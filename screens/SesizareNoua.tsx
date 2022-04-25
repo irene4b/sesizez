@@ -112,7 +112,7 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
           </TouchableOpacity>
         ))}
         <Button style={{ width: 50, height: 50, marginRight: 5}} onPress={pickImage}>+</Button>
-        <Button style={{ width: 50, height: 50}} onPress={shootImage} accessoryLeft={<Icon name="camera" />}>
+        <Button style={{ width: 50, height: 50, paddingLeft: 30}} onPress={shootImage} accessoryLeft={<Icon name="camera" />}>
           &nbsp;
         </Button>
       </View>
@@ -138,11 +138,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   separator: {
     marginVertical: 30,
     height: 1,
     width: '80%',
+    margin: '10%',
   },
   select: {
     width: '100%',

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, Linking, Platform, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Alert, KeyboardAvoidingView, Linking, Platform, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -76,6 +76,7 @@ export default function DatePersonale() {
   }
 
   return (
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
     <SafeAreaView>
       <ScrollView style={styles.container}>
         <Text style={styles.subtitle}>Bun venit! Înainte de a putea face sesizări avem nevoie de câteva date personale. Acestea sunt necesare pentru înregistrarea oficială a sesizărilor.</Text>
@@ -138,6 +139,7 @@ export default function DatePersonale() {
         <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
       </ScrollView>
     </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
