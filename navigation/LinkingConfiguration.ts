@@ -20,9 +20,9 @@ const linking: LinkingOptions<RootStackParamList> = {
               SesizareNouaScreen: 'one',
             },
           },
-          TabTwo: {
+          Despre: {
             screens: {
-              TabTwoScreen: 'two',
+              DespreScreen: 'two',
             },
           },
         },

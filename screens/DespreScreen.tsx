@@ -37,7 +37,7 @@ const items = [
   }
 ]
 
-export default function TabTwoScreen() {
+export default function DespreScreen() {
   const renderItem = ({ item, index }: RenderItemType) => (
     <ListItem
       title={item.title}

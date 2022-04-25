@@ -15,7 +15,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import DatePersonale from '../screens/DatePersonale';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import SesizareNouaScreen from '../screens/SesizareNoua';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import DespreScreen from '../screens/DespreScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -85,8 +85,8 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Despre"
+        component={DespreScreen}
         options={{
           title: 'Despre',
           tabBarIcon: ({ color }) => <TabBarIcon name="question" color={color} />,
