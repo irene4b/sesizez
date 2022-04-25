@@ -1,7 +1,7 @@
-import generateGoogleMapsLink from "../reusables/generateGoogleMapsLink";
-import generateIntroduction from "../reusables/generateIntroduction";
-import generateSignature from "../reusables/generateSignature";
-import { reportedLocation, userPersonalData } from "../types";
+import generateGoogleMapsLink from '../reusables/generateGoogleMapsLink';
+import generateIntroduction from '../reusables/generateIntroduction';
+import generateSignature from '../reusables/generateSignature';
+import { reportedLocation, userPersonalData } from '../types';
 
 const model = {
   title: 'Model Sesizare',
@@ -25,9 +25,10 @@ const model = {
         return ['politialocala@sector5.ro', 'bpr@b.politiaromana.ro'];
       case 'Bucureşti - Sectorul 6':
         return ['office@politia6.ro', 'bpr@b.politiaromana.ro'];
-      default: return [];
+      default:
+        return [];
     }
-  }
-}
+  },
+};
 
 export default model;

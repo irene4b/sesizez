@@ -17,9 +17,13 @@ import * as MailComposer from 'expo-mail-composer';
 import * as ImagePicker from 'expo-image-picker';
 import trotuarBlocatMasini from '../templates/trotuarBlocatMasini';
 import trotuarDegradat from '../templates/trotuarDegradat';
-import { getHeadingAsync } from 'expo-location';
+import trecerePietoniVopseaStearsa from '../templates/trecerePietoniVopseaStearsa';
 
-const templates = [trotuarBlocatMasini, trotuarDegradat];
+const templates = [
+  trotuarBlocatMasini,
+  trotuarDegradat,
+  trecerePietoniVopseaStearsa,
+];
 
 export default function SesizareNoua({
   navigation,
