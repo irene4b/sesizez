@@ -12,6 +12,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Aplicația are nevoie de acces la fotografii pentru a atașa dovezile."
+        }
+      ]
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },

@@ -44,7 +44,7 @@ export default function DatePersonale() {
 
   const createMissingLocationPermissionAlert = () =>
     Alert.alert('Eroare', 'Permisiunea pentru locatie este necesara pentru autocompletarea adresei.', [
-      { text: 'OK', onPress: () => console.log('OK Pressed') },
+      { text: 'OK' },
     ]);
 
   const useCurrentLocation = async () => {
@@ -68,8 +68,6 @@ export default function DatePersonale() {
 
     if(response[0].city === 'Bucureşti')
       setJudet(response[0].district?.replace('Bucureşti ', '') || '');
-
-    console.log(response);
   }
 
   const saveAndAlert = () => {

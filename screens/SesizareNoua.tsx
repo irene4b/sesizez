@@ -1,22 +1,24 @@
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps, userPersonalData } from '../types';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
-import { Button } from '@ui-kitten/components';
+import { Image } from 'react-native';
+import { Button, Radio, RadioGroup } from '@ui-kitten/components';
 import { getCurrentLocation } from '../reusables/getCurrentLocation';
 import * as MailComposer from 'expo-mail-composer';
+import * as ImagePicker from 'expo-image-picker';
 import trotuarBlocatMasini from '../templates/trotuarBlocatMasini';
 
-const useSelectState = (initialState = '') => {
-  const [value , setValue] = useState(initialState);
-  return { value, onSelect: setValue };
-};
+const templates = [trotuarBlocatMasini];
+
 
 export default function SesizareNoua({ navigation }: RootTabScreenProps<'SesizareNoua'>) {
-  const selectedTypeState = useSelectState();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [images, setImages] = useState<Array<string>>([]);
+  const [isLoading, setIsLoading] = useState(false);
   
   const checkLocalStorage = async () => {
     // get all required fields from local storage and show modal if not set
@@ -32,7 +34,8 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
     checkLocalStorage();
   }, []);
 
-  const testTemplate = async () => {
+  const sendEmail = async () => {
+    setIsLoading(true);
     const personalData: userPersonalData = {
       nume: await AsyncStorage.getItem('nume') || '',
       prenume: await AsyncStorage.getItem('prenume') || '',
@@ -46,17 +49,59 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
       return;
     }
     await MailComposer.composeAsync({
-      body: trotuarBlocatMasini.generator(personalData, currentLocation),
-      subject: trotuarBlocatMasini.title,
-      recipients: trotuarBlocatMasini.destination(currentLocation.localitate, currentLocation.judet),
+      body: templates[selectedIndex].generator(personalData, currentLocation),
+      subject: templates[selectedIndex].title,
+      recipients: templates[selectedIndex].destination(currentLocation.localitate, currentLocation.judet),
+      attachments: images,
     });
+    setIsLoading(false);
   }
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0,
+    });
+
+    if (!result.cancelled && result.uri) {
+      setImages([...images, result.uri]);
+    }
+  };
+
+  const removeImage = (index: number) => {
+    setImages(images.filter((_, i) => i !== index));
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sesizare Noua</Text>
+      <Text style={styles.title}>Sesizare rapidă</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Button onPress={testTemplate}>Test</Button>
+      <Text style={styles.label}>Tip sesizare:</Text>
+      <RadioGroup
+        selectedIndex={selectedIndex}
+        onChange={index => setSelectedIndex(index)}
+      >
+        {templates.map(template => (
+          <Radio key={template.title}>{template.title}</Radio>
+        ))}
+      </RadioGroup>
+      <Text style={styles.label}>Imagini:</Text>
+      <View style={styles.imagessContainer}>
+        {images.map((img, index) => (
+          <TouchableOpacity key={`to-${index}`} activeOpacity={0.5} onPress={() => removeImage(index)}>
+            <Image 
+              key={index} 
+              source={{ uri: img }} 
+              style={{ width: 50, height: 50, marginRight: 5 }} 
+            />
+          </TouchableOpacity>
+        ))}
+        <Button style={{ alignSelf: 'flex-end', width: 50, height: 50}} onPress={pickImage}>+</Button>
+      </View>
+      {isLoading ? <ActivityIndicator animating={true} size="large" />: <Button style={{marginTop: 20}} onPress={sendEmail}>Trimite</Button>}
+      
+      
     </View>
   );
 }
@@ -64,9 +109,14 @@ export default function SesizareNoua({ navigation }: RootTabScreenProps<'Sesizar
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    padding: '2%'
+    padding: '5%'
+  },
+  imagessContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    marginTop: 20
   },
   title: {
     fontSize: 20,
@@ -79,5 +129,10 @@ const styles = StyleSheet.create({
   },
   select: {
     width: '100%',
+  },
+  label: {
+    fontSize: 15,
+    marginTop: 5,
+    fontWeight: 'bold',
   }
 });
