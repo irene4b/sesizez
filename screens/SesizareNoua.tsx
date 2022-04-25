@@ -18,11 +18,15 @@ import * as ImagePicker from 'expo-image-picker';
 import trotuarBlocatMasini from '../templates/trotuarBlocatMasini';
 import trotuarDegradat from '../templates/trotuarDegradat';
 import trecerePietoniVopseaStearsa from '../templates/trecerePietoniVopseaStearsa';
+import pistaBicicleteNesigura from '../templates/pistaBicicleteNesigura';
+import pistaBicicleteInexistenta from '../templates/pistaBicicleteInexistenta';
 
 const templates = [
   trotuarBlocatMasini,
   trotuarDegradat,
   trecerePietoniVopseaStearsa,
+  pistaBicicleteNesigura,
+  pistaBicicleteInexistenta,
 ];
 
 export default function SesizareNoua({
