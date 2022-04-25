@@ -58,7 +58,7 @@ export default function SesizareNoua({
       setIsLoading(false);
       return;
     }
-    if(!images.length) {
+    if (!images.length) {
       Alert.alert('Trebuie să adaugi cel puțin o poză doveditoare.');
       setIsLoading(false);
       return;
