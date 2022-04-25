@@ -11,8 +11,9 @@ import { getCurrentLocation } from '../reusables/getCurrentLocation';
 import * as MailComposer from 'expo-mail-composer';
 import * as ImagePicker from 'expo-image-picker';
 import trotuarBlocatMasini from '../templates/trotuarBlocatMasini';
+import trotuarDegradat from '../templates/trotuarDegradat';
 
-const templates = [trotuarBlocatMasini];
+const templates = [trotuarBlocatMasini, trotuarDegradat];
 
 
 export default function SesizareNoua({ navigation }: RootTabScreenProps<'SesizareNoua'>) {
