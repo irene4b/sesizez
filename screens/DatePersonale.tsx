@@ -19,6 +19,7 @@ import React, { useEffect } from 'react';
 export default function DatePersonale() {
   const [nume, setNume] = React.useState('');
   const [prenume, setPrenume] = React.useState('');
+  const [cnp, setCNP] = React.useState('');
   const [adresaLinie1, setAdresaLinie1] = React.useState('');
   const [adresaLinie2, setAdresaLinie2] = React.useState('');
   const [localitate, setLocalitate] = React.useState('');
@@ -27,6 +28,7 @@ export default function DatePersonale() {
   const saveAllInAsyncStorage = () => {
     AsyncStorage.setItem('nume', nume);
     AsyncStorage.setItem('prenume', prenume);
+    AsyncStorage.setItem('cnp', cnp);
     AsyncStorage.setItem('adresaLinie1', adresaLinie1);
     AsyncStorage.setItem('adresaLinie2', adresaLinie2);
     AsyncStorage.setItem('localitate', localitate);
@@ -36,6 +38,7 @@ export default function DatePersonale() {
   const getAllFromAsyncStorage = () => {
     AsyncStorage.getItem('nume').then((value) => setNume(value || ''));
     AsyncStorage.getItem('prenume').then((value) => setPrenume(value || ''));
+    AsyncStorage.getItem('cnp').then((value) => setCNP(value || ''));
     AsyncStorage.getItem('adresaLinie1').then((value) =>
       setAdresaLinie1(value || '')
     );
@@ -121,6 +124,12 @@ export default function DatePersonale() {
             label="Prenume"
             value={prenume}
             onChangeText={(newPrenume) => setPrenume(newPrenume)}
+          />
+          <Input
+            placeholder="Scrie aici..."
+            label="CNP"
+            value={cnp}
+            onChangeText={(newCNP) => setCNP(newCNP)}
           />
           <View
             style={styles.separator}

@@ -41,6 +41,7 @@ export type userPersonalData = {
   adresaLinie2: string;
   judet: string;
   localitate: string;
+  cnp: string;
 }
 
 export type reportedLocation = {
