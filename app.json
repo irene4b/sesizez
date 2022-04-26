@@ -41,7 +41,8 @@
         "ACCESS_FINE_LOCATION",
         "CAMERA"
       ],
-      "package": "com.eumeo.sesizez"
+      "package": "com.eumeo.sesizez",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
