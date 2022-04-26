@@ -43,6 +43,7 @@ export default function SesizareNoua({
     const localStorageArr = await AsyncStorage.multiGet([
       'nume',
       'prenume',
+      'cnp',
       'adresaLinie1',
       'localitate',
       'judet',
@@ -76,6 +77,7 @@ export default function SesizareNoua({
     const personalData: userPersonalData = {
       nume: (await AsyncStorage.getItem('nume')) || '',
       prenume: (await AsyncStorage.getItem('prenume')) || '',
+      cnp: (await AsyncStorage.getItem('cnp')) || '',
       adresaLinie1: (await AsyncStorage.getItem('adresaLinie1')) || '',
       adresaLinie2: (await AsyncStorage.getItem('adresaLinie2')) || '',
       localitate: (await AsyncStorage.getItem('localitate')) || '',
