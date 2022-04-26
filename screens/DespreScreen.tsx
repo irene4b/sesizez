@@ -46,7 +46,7 @@ export default function DespreScreen() {
           Linking.openURL(item.url);
         } else if (item.share) {
           Share.share({
-            message: 'TODO',
+            message: 'https://sesizez.app',
           });
         }
       }}
