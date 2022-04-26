@@ -13,6 +13,8 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "serviceAccountKeyPath": "~/gs.json"
+    }
   }
 }
