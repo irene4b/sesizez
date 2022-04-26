@@ -22,8 +22,7 @@
       ]
     ],
     "updates": {
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/ac8fae68-5a5c-4f37-8781-00a91672785c"
+      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
@@ -33,8 +32,8 @@
       "bundleIdentifier": "com.eumeo.sesizez",
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Aplicația are nevoie de acces la fotografii pentru a atașa dovezile.",
-        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
-        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone"
+        "NSCameraUsageDescription": "Aplicația are nevoie de acces la camera foto pentru a atașa dovezile.",
+        "NSMicrophoneUsageDescription": "Aplicatia are nevoie de acces la microfon, acesta fiind necesar pentru filmare."
       }
     },
     "android": {
