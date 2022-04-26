@@ -1,5 +1,5 @@
 # Sesizez
-![screenshots](https://user-images.githubusercontent.com/17914968/165091587-e357564c-ba15-431f-8bd1-961d03494f44.jpg)
+![screenshot](https://user-images.githubusercontent.com/17914968/165262030-6bcf93bc-2655-4ccc-90e2-150b93c9ccd9.jpg)
 
 Aplicație pentru a ușura procesul de trimitere al sesizărilor.
 
