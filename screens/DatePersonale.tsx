@@ -123,6 +123,7 @@ export default function DatePersonale() {
             placeholder="Scrie aici..."
             label="Prenume"
             value={prenume}
+            style={styles.margin}
             onChangeText={(newPrenume) => setPrenume(newPrenume)}
           />
           <Input
