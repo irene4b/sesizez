@@ -57,7 +57,7 @@ export default function DatePersonale() {
 
   useEffect(() => {
     saveAllInAsyncStorage();
-  }, [nume, prenume, adresaLinie1, adresaLinie2, localitate, judet]);
+  }, [nume, prenume, cnp, adresaLinie1, adresaLinie2, localitate, judet]);
 
   const createMissingLocationPermissionAlert = () =>
     Alert.alert(
