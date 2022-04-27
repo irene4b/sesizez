@@ -93,7 +93,7 @@ export default function SesizareNoua({
       return;
     }
     try {
-      await MailComposer.composeAsync({
+      MailComposer.composeAsync({
         body: templates[selectedIndex].generator(personalData, currentLocation),
         subject: templates[selectedIndex].title,
         recipients: templates[selectedIndex].destination(
