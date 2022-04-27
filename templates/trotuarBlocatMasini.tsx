@@ -11,10 +11,10 @@ const trotuarBlocatMasini = {
     const signature = generateSignature(personal);
     return (
       `${introduction}\n\n` +
-      `Vă scriu în legătură cu trotuarele ocupate de maşini parcate neregulamentar, blocând accesul pietonal în zona ${location.adresaLinie1} (vedeți pozele ataşate şi link-ul pentru hartă de mai jos)\n\n` +
-      `Aceste maşini parcate neregulamentar blochează zilnic accesul părinților cu cărucioare de copii şi a persoanelor cu dizabilități mobile, punându-le viața in pericol atunci când sunt nevoiți să se deplaseze pe carosabil.\n\n` +
+      `Vă scriu în legătură cu trotuarele ocupate de mașini parcate neregulamentar, blocând accesul pietonal în zona ${location.adresaLinie1} (vedeți pozele atașate și link-ul pentru hartă de mai jos)\n\n` +
+      `Aceste mașini parcate neregulamentar blochează zilnic accesul părinților cu cărucioare de copii și a persoanelor cu dizabilități, punându-le viața in pericol atunci când sunt nevoiți să se deplaseze pe carosabil.\n\n` +
       `Link locație: ${googleMapsLink}\n\n` +
-      `Dorim: \n` +
+      `Doresc: \n` +
       `- avertizarea sau amendarea deținătorilor autovehiculelor parcate neregulamentar,\n` +
       `- montarea panourilor de parcare interzisă cu o vizibilitate bună,\n` +
       `- oprirea accesului pe trotuare prin montarea unor stâlpi,\n` +

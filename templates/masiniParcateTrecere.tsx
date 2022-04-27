@@ -11,14 +11,14 @@ const masiniParcateTrecere = {
     const signature = generateSignature(personal);
     return (
       `${introduction}\n\n` +
-      `Vă scriu în legătură cu mașinile parcate neregulamentar în apropierea trecerii de pietoni de pe lângă ${location.adresaLinie1} (vedeți pozele ataşate şi link-ul pentru hartă de mai jos)\n\n` +
-      `Aceste maşini parcate neregulamentar fac imposibilă observarea în timp util a pietonilor, punându-le acestora viața în pericol când intenționează să treacă strada.\n\n` +
+      `Vă scriu în legătură cu mașinile parcate neregulamentar în apropierea trecerii de pietoni de pe lângă ${location.adresaLinie1} (vedeți pozele ataşate și link-ul pentru hartă de mai jos)\n\n` +
+      `Aceste mașini parcate neregulamentar fac imposibilă observarea în timp util a pietonilor, punându-le acestora viața în pericol când intenționează să treacă strada.\n\n` +
       `Link locație: ${googleMapsLink}\n\n` +
-      `Dorim: \n` +
+      `Doresc: \n` +
       `- amendarea șoferilor care parchează ilegal, nerespectând distanța minimă față de trecerea de pietoni,\n` +
-      `- montarea panourilor de parcare interzisă cu o vizibilitate bună,\n` +
+      `- montarea panourilor de semnalizare a interzicerii parcării într-un punct cu o vizibilitate bună,\n` +
       `- extinderea trotuarului în apropierea trecerii de pietoni pentru a preveni parcatul neregulamentar (exemplu: https://i.imgur.com/iCKDqTU.jpg ),\n` +
-      `Prin aceste acțiuni considerăm că se va asigura trecerea în siguranță a străzii a tuturor persoanelor.\n\n` +
+      `Prin aceste acțiuni consider că se vor asigura condiții de traversare în siguranță pentru toate categoriile de persoane.\n\n` +
       `${signature}`
     );
   },
