@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import {
   Alert,
   KeyboardAvoidingView,
-  Linking,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -12,9 +11,9 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button, Icon, Input } from '@ui-kitten/components';
-import * as Location from 'expo-location';
 import { Text, View } from '../components/Themed';
 import React, { useEffect } from 'react';
+import { getCurrentLocation } from '../reusables/getCurrentLocation';
 
 export default function DatePersonale() {
   const [nume, setNume] = React.useState('');
@@ -59,36 +58,16 @@ export default function DatePersonale() {
     saveAllInAsyncStorage();
   }, [nume, prenume, cnp, adresaLinie1, adresaLinie2, localitate, judet]);
 
-  const createMissingLocationPermissionAlert = () =>
-    Alert.alert(
-      'Eroare',
-      'Permisiunea pentru locatie este necesara pentru autocompletarea adresei.',
-      [{ text: 'OK' }]
-    );
-
   const useCurrentLocation = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      createMissingLocationPermissionAlert();
-      return;
+    const currentLocation = await getCurrentLocation();
+    if (currentLocation) {
+      setAdresaLinie1(currentLocation.adresaLinie1);
+      if(currentLocation.localitate === 'Bucharest') {
+        currentLocation.localitate = 'Bucuresti';
+      }
+      setLocalitate(currentLocation.localitate);
+      setJudet(currentLocation.judet);
     }
-
-    let { coords } = await Location.getCurrentPositionAsync({});
-    const { latitude, longitude } = coords;
-    let response = await Location.reverseGeocodeAsync({
-      latitude,
-      longitude,
-    });
-
-    if (!response[0].name) return;
-
-    setAdresaLinie1(
-      `Str. ${response[0].street}, nr. ${response[0].streetNumber}`
-    );
-    setLocalitate(response[0].city || '');
-
-    if (response[0].city === 'Bucharest')
-      setJudet(response[0].district?.replace('Bucharest ', '') || '');
   };
 
   const saveAndAlert = () => {
