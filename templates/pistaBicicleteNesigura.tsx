@@ -1,6 +1,7 @@
 import generateGoogleMapsLink from '../reusables/generateGoogleMapsLink';
 import generateIntroduction from '../reusables/generateIntroduction';
 import generateSignature from '../reusables/generateSignature';
+import { getAuthoritiesEmails } from '../reusables/getAuthoritiesEmails';
 import { reportedLocation, userPersonalData } from '../types';
 
 const pistaBicicleteNesigura = {
@@ -21,54 +22,7 @@ const pistaBicicleteNesigura = {
     );
   },
   destination: (localitate: string, judet: string) => {
-    switch (`${localitate} - ${judet}`) {
-      case 'Bucharest - Sector 1':
-        return [
-          'contact@politialocalasector1.ro',
-          'office@aspmb.ro',
-          'registratura@primarias1.ro',
-          'secretariat@adp-sector1.ro',
-        ];
-      case 'Bucharest - Sector 2':
-        return [
-          'office@politialocalas2.ro',
-          'office@aspmb.ro',
-          'infopublice@ps2.ro',
-          'office@adp2.ro',
-        ];
-      case 'Bucharest - Sector 3':
-        return [
-          'secretariat@politialocala3.ro',
-          'office@aspmb.ro',
-          'relatiipublice@primarie3.ro',
-          'domeniu.public@primarie3.ro',
-        ];
-      case 'Bucharest - Sector 4':
-        return [
-          'sesizari@politialocala4.ro',
-          'office@aspmb.ro',
-          'info@adp4.ro',
-          'contact@ps4.ro',
-          'info@totulverde.ro',
-        ];
-      case 'Bucharest - Sector 5':
-        return [
-          'politialocala@sector5.ro',
-          'office@aspmb.ro',
-          'sesizari@sector5.ro',
-          'primarie@sector5.ro',
-          'dadp@sector5.ro',
-        ];
-      case 'Bucharest - Sector 6':
-        return [
-          'office@politia6.ro',
-          'office@aspmb.ro',
-          'prim6@primarie6.ro',
-          'contact@adps6.ro',
-        ];
-      default:
-        return [];
-    }
+    return getAuthoritiesEmails(localitate, judet, 'politiaLocala primarie adp administratiaStrazilor');
   },
 };
 

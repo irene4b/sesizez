@@ -52,3 +52,5 @@ export type reportedLocation = {
   judet: string;
   localitate: string;
 }
+
+export type authorities = 'adp' | 'brigadaRutiera' | 'politiaLocala' | 'primarie';
