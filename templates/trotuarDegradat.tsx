@@ -19,17 +19,17 @@ const trotuarDegradat = {
   },
   destination: (localitate: string, judet: string) => {
     switch (`${localitate} - ${judet}`) {
-      case 'Bucureşti - Sectorul 1':
+      case 'Bucharest - Sector 1':
         return ['secretariat@adp-sector1.ro', 'office@aspmb.ro'];
-      case 'Bucureşti - Sectorul 2':
+      case 'Bucharest - Sector 2':
         return ['office@adp2.ro', 'office@aspmb.ro'];
-      case 'Bucureşti - Sectorul 3':
+      case 'Bucharest - Sector 3':
         return ['domeniu.public@primarie3.ro', 'office@aspmb.ro'];
-      case 'Bucureşti - Sectorul 4':
+      case 'Bucharest - Sector 4':
         return ['info@adp4.ro', 'info@totulverde.ro', 'office@aspmb.ro'];
-      case 'Bucureşti - Sectorul 5':
+      case 'Bucharest - Sector 5':
         return ['dadp@sector5.ro', 'office@aspmb.ro'];
-      case 'Bucureşti - Sectorul 6':
+      case 'Bucharest - Sector 6':
         return ['contact@adps6.ro', 'office@aspmb.ro'];
       default: return [];
     }

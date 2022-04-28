@@ -87,8 +87,8 @@ export default function DatePersonale() {
     );
     setLocalitate(response[0].city || '');
 
-    if (response[0].city === 'Bucureşti')
-      setJudet(response[0].district?.replace('Bucureşti ', '') || '');
+    if (response[0].city === 'Bucharest')
+      setJudet(response[0].district?.replace('Bucharest ', '') || '');
   };
 
   const saveAndAlert = () => {
