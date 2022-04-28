@@ -20,7 +20,7 @@ export const osmReverseLookup = async (props: Props): Promise<reportedLocation> 
   let adresaLinie1 = '';
   if(response.data.address.road) adresaLinie1 += `${response.data.address.road} `;
   if(response.data.address.house_number) adresaLinie1 += `nr. ${response.data.address.house_number}`;
-  if(response.data.addresstype === 'building') adresaLinie1 += ` (in apropierea ${response.data.address.building})`;
+  if(response.data.addresstype === 'building') adresaLinie1 += ` (pe langa ${response.data.address.building})`;
   
   let city = '';
   if(response.data.address.city) city = response.data.address.city;
