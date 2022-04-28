@@ -12,8 +12,8 @@ const pistaBicicleteInexistenta = {
     return (
       `${introduction}\n\n` +
       `Vă scriu în legătură cu circulația bicicletelor din apropierea ${location.adresaLinie1}, link harta: ${googleMapsLink}\n\n` +
-      `În prezent oricine circulă cu bicicleta sau trotineta electrică pe această stradă este pus în pericol de autovehiculele ce circulă cu mare viteză. Situația curentă se poate vedea și în pozele atașate.\n\n` +
-      `Dorim crearea unei piste de bicicletă separată de restul benzilor pentru a putea circula în siguranță și cu bicicleta pe stradă:\n\n` +
+      `În prezent oricine circulă cu bicicleta sau trotineta electrică pe această stradă este pus în pericol de autovehiculele care circulă cu mare viteză. Situația curentă se poate vedea și în pozele atașate.\n\n` +
+      `Doresc crearea unei piste de bicicletă separată și delimitată cu elemente de protectie de restul benzilor pentru a putea circula în siguranță cu bicicleta pe stradă:\n\n` +
       `- crearea unei piste de biciclete ce respectă standardele europene\n` +
       `- separarea pistei de biciclete de orice tip de trafic de mare viteză\n` +
       `- instalarea unor stâlpi sau unor borduri ce nu permit accesul mașinilor pe pistă\n` +
