@@ -1,7 +1,8 @@
 # Sesizez
 ![screenshots](https://user-images.githubusercontent.com/17914968/165091587-e357564c-ba15-431f-8bd1-961d03494f44.jpg)
 [![runs with Expo Go](https://img.shields.io/badge/Runs%20with%20Expo%20Go-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.dev/client)
-[![GitHub license](https://img.shields.io/github/license/alexbulintis/sesizez)](https://github.com/alexbulintis/sesizez/blob/master/LICENSE)
+![GitHub](https://img.shields.io/github/license/alexbulintis/sesizez?style=flat-square)
+![Discord](https://img.shields.io/discord/969155519233277952?style=flat-square)
 
 Aplicație pentru a ușura procesul de trimitere al sesizărilor.
 
