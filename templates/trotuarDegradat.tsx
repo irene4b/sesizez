@@ -1,6 +1,7 @@
 import generateGoogleMapsLink from "../reusables/generateGoogleMapsLink";
 import generateIntroduction from "../reusables/generateIntroduction";
 import generateSignature from "../reusables/generateSignature";
+import { getAuthoritiesEmails } from "../reusables/getAuthoritiesEmails";
 import { reportedLocation, userPersonalData } from "../types";
 
 const trotuarDegradat = {
@@ -18,22 +19,8 @@ const trotuarDegradat = {
     `${signature}`;
   },
   destination: (localitate: string, judet: string) => {
-    switch (`${localitate} - ${judet}`) {
-      case 'Bucharest - Sector 1':
-        return ['secretariat@adp-sector1.ro', 'office@aspmb.ro'];
-      case 'Bucharest - Sector 2':
-        return ['office@adp2.ro', 'office@aspmb.ro'];
-      case 'Bucharest - Sector 3':
-        return ['domeniu.public@primarie3.ro', 'office@aspmb.ro'];
-      case 'Bucharest - Sector 4':
-        return ['info@adp4.ro', 'info@totulverde.ro', 'office@aspmb.ro'];
-      case 'Bucharest - Sector 5':
-        return ['dadp@sector5.ro', 'office@aspmb.ro'];
-      case 'Bucharest - Sector 6':
-        return ['contact@adps6.ro', 'office@aspmb.ro'];
-      default: return [];
-    }
-  }
+    return getAuthoritiesEmails(localitate, judet, 'adp administratiaStrazilor');
+  },
 }
 
 export default trotuarDegradat;
