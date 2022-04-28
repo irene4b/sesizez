@@ -81,6 +81,16 @@ export default function DespreScreen() {
       >
         Mulțumim Grow Up Romania pentru inspirație :)
       </Text>
+      <Text
+        style={styles.subtitle}
+        onPress={() =>
+          Linking.openURL(
+            'https://osm.org/copyright'
+          )
+        }
+      >
+        Reverse Lookup Data &copy; OpenStreetMap contributors, ODbL 1.0, osm.org/copyright
+      </Text>
     </View>
   );
 }
