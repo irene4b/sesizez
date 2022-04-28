@@ -7,4 +7,4 @@ Nu trebui sa fi programator pentru a contribui, un cont de Github este suficient
 
 Limba pentru comunicare pe Github este limba romana (sau romgleza, whatever) iar variabilele pot fi in romana sau engleza, preferabil in engleza.
 
-[https://discord.gg/qSqZ9PaqQY](Hai pe Discord ca sa colaboram mai eficient!)
+[Hai pe Discord ca sa colaboram mai eficient!](https://discord.gg/qSqZ9PaqQY)
