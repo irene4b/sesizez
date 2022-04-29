@@ -27,6 +27,13 @@ Aplicația nu funcționează în browser deoarece atașarea imaginilor este impo
 
 Datele tale nu părăsesc telefonul mobil decât către autoritățile locale atunci când trimiți un e-mail.
 
+## Orașe în care precompletarea adreselor de mail este disponibilă
+
+  - București (toate sectoarele)
+  - Iași
+  - Cluj-Napoca
+  - Craiova
+
 ## Licență
 
 Acest proiect este distribuit sub licența GNU General Public License v3.0. 
