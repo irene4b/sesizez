@@ -5,4 +5,5 @@ export const POLITIA_LOCALA = {
   'Bucharest - Sector 4': ['sesizari@politialocala4.ro'],
   'Bucharest - Sector 5': ['politialocala@sector5.ro'],
   'Bucharest - Sector 6': ['office@politia6.ro'],
+  'Cluj-Napoca - Cluj': ['politialocala@primariaclujnapoca.ro'],
 }
