@@ -1,4 +1,4 @@
-import generateGoogleMapsLink from "../reusables/generateGoogleMapsLink";
+import generateOSMLink from "../reusables/generateOSMLink";
 import generateIntroduction from "../reusables/generateIntroduction";
 import generateSignature from "../reusables/generateSignature";
 import { getAuthoritiesEmails } from "../reusables/getAuthoritiesEmails";
@@ -8,7 +8,7 @@ const trotuarDegradat = {
   title: 'Trotuar degradat',
   generator: (personal: userPersonalData, location: reportedLocation) => {
     const introduction = generateIntroduction(personal);
-    const googleMapsLink = generateGoogleMapsLink(location.lat, location.lng);
+    const googleMapsLink = generateOSMLink(location.lat, location.lng);
     const signature = generateSignature(personal);
     return `${introduction}\n\n` +
      `Aduc în atenția dvs. câteva dintre problemele de pe trotuarele din apropierea ${location.adresaLinie1}.\n` +
