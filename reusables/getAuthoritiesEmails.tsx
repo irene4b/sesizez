@@ -19,7 +19,7 @@ export const getAuthoritiesEmails = (localitate: string, judet: string, catre: s
   });
 
   if(emails.length === 0) {
-    Alert.alert(`Încă nu putem precompleta adresele de mail ale autorităților din ${localitate}. Poți să ne ajuți pe GitHub!`)
+    Alert.alert(`Încă nu putem autocompleta adresele de mail ale autorităților din ${localitate}. Poți să ne ajuți pe GitHub!`)
   }
 
   return emails;
