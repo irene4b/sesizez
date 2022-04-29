@@ -27,7 +27,7 @@ Aplicația nu funcționează în browser deoarece atașarea imaginilor este impo
 
 Datele tale nu părăsesc telefonul mobil decât către autoritățile locale atunci când trimiți un e-mail, și către [OpenStreetMap](https://www.openstreetmap.org/about) pentru a determina adresa în funcție de coordonate.
 
-## Orașe în care precompletarea adreselor de mail este disponibilă
+## Orașe în care autocompletarea adreselor de mail este disponibilă
 
   - București (toate sectoarele)
   - Iași
