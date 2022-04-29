@@ -91,7 +91,7 @@ export default function SesizareNoua({
 
     // if image was taken further away from the user
     const exif = await firstImageExif;
-    if (exif.GPSLatitude && exif.GPSLongitude && currentLocation) {
+    if (exif?.GPSLatitude && exif?.GPSLongitude && currentLocation) {
       const distanceFromHere = calculateCoordinateDistance(
         {lat: currentLocation?.lat, lng: currentLocation?.lng},
         {lat: exif.GPSLatitude, lng: exif.GPSLongitude},
