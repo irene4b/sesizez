@@ -25,7 +25,14 @@ Aplicația nu funcționează în browser deoarece atașarea imaginilor este impo
   - Locație: pentru a adăuga adresa în email (obligatoriu) sau pentru autocompletarea adresei în modalul de date personale (opțional)
   - Galerie / Cameră Foto: pentru a atașa dovezile în email (obligatoriu)
 
-Datele tale nu părăsesc telefonul mobil decât către autoritățile locale atunci când trimiți un e-mail.
+Datele tale nu părăsesc telefonul mobil decât către autoritățile locale atunci când trimiți un e-mail, și către [OpenStreetMap](https://www.openstreetmap.org/about) pentru a determina adresa în funcție de coordonate.
+
+## Orașe în care autocompletarea adreselor de mail este disponibilă
+
+  - București (toate sectoarele)
+  - Iași
+  - Cluj-Napoca
+  - Craiova
 
 ## Licență
 

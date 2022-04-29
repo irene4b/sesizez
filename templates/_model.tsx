@@ -1,4 +1,4 @@
-import generateGoogleMapsLink from '../reusables/generateGoogleMapsLink';
+import generateOSMLink from '../reusables/generateOSMLink';
 import generateIntroduction from '../reusables/generateIntroduction';
 import generateSignature from '../reusables/generateSignature';
 import { reportedLocation, userPersonalData } from '../types';
@@ -7,7 +7,7 @@ const model = {
   title: 'Model Sesizare',
   generator: (personal: userPersonalData, location: reportedLocation) => {
     const introduction = generateIntroduction(personal);
-    const googleMapsLink = generateGoogleMapsLink(location.lat, location.lng);
+    const googleMapsLink = generateOSMLink(location.lat, location.lng);
     const signature = generateSignature(personal);
     return `${introduction}, ${googleMapsLink}\n\n${signature}`;
   },

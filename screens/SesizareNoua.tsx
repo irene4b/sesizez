@@ -21,6 +21,8 @@ import trecerePietoniVopseaStearsa from '../templates/trecerePietoniVopseaStears
 import pistaBicicleteNesigura from '../templates/pistaBicicleteNesigura';
 import pistaBicicleteInexistenta from '../templates/pistaBicicleteInexistenta';
 import masiniParcateTrecere from '../templates/masiniParcateTrecere';
+import { osmReverseLookup } from '../reusables/osmReverseLookup';
+import { calculateCoordinateDistance } from '../reusables/calculateCoordinateDistance';
 
 const templates = [
   trotuarBlocatMasini,
@@ -36,6 +38,7 @@ export default function SesizareNoua({
 }: RootTabScreenProps<'SesizareNoua'>) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [images, setImages] = useState<Array<string>>([]);
+  const [firstImageExif, setFirstImageExif] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
 
   const checkLocalStorage = async () => {
@@ -83,7 +86,27 @@ export default function SesizareNoua({
       localitate: (await AsyncStorage.getItem('localitate')) || '',
       judet: (await AsyncStorage.getItem('judet')) || '',
     };
-    const currentLocation = await getCurrentLocation();
+
+    let currentLocation = await getCurrentLocation();
+
+    // if image was taken further away from the user
+    const exif = await firstImageExif;
+    if (exif?.GPSLatitude && exif?.GPSLongitude && currentLocation) {
+      const distanceFromHere = calculateCoordinateDistance(
+        {lat: currentLocation?.lat, lng: currentLocation?.lng},
+        {lat: exif.GPSLatitude, lng: exif.GPSLongitude},
+      )
+
+      if(distanceFromHere > 100) {
+        Alert.alert('Poza a fost făcută departe de locația curentă. Vom folosi locația pozei în sesizare.');
+
+        currentLocation = await osmReverseLookup(
+          {lat: exif.GPSLatitude, lng: exif.GPSLongitude}
+        )
+    
+      }
+    }
+
     if (!currentLocation) {
       setIsLoading(false);
       Alert.alert(
@@ -116,9 +139,11 @@ export default function SesizareNoua({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 0,
+      exif: true,
     });
 
     if (!result.cancelled && result.uri) {
+      setFirstImageExif(result.exif);
       setImages([...images, result.uri]);
     }
   };
