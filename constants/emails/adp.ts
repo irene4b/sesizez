@@ -6,4 +6,6 @@ export const ADP = {
   'Bucharest - Sector 5': ['dadp@sector5.ro'],
   'Bucharest - Sector 6': ['contact@adps6.ro'],
   'Iași - Iași': ['contact@djadp.ro'],
+  'Craiova - Dolj': ['office@raadpflcraiova.ro'],
+  'Cluj-Napoca - Cluj': ['office@radpcj.ro'],
 }
