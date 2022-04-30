@@ -7,12 +7,12 @@ import {
 } from 'react-native';
 
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps, userPersonalData } from '../types';
+import { model, RootTabScreenProps, userPersonalData } from '../types';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { Image } from 'react-native';
-import { Button, Icon, Radio, RadioGroup } from '@ui-kitten/components';
+import { Button, Icon, Input } from '@ui-kitten/components';
 import { getCurrentLocation } from '../reusables/getCurrentLocation';
 import * as MailComposer from 'expo-mail-composer';
 import * as ImagePicker from 'expo-image-picker';
@@ -26,6 +26,7 @@ import { osmReverseLookup } from '../reusables/osmReverseLookup';
 import { calculateCoordinateDistance } from '../reusables/calculateCoordinateDistance';
 import { IssueCard } from '../components/IssueCard';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { replaceDiacritics } from '../reusables/replaceDiacritics';
 
 const templates = [
   trotuarBlocatMasini,
@@ -43,6 +44,7 @@ export default function SesizareNoua({
   const [images, setImages] = useState<Array<string>>([]);
   const [firstImageExif, setFirstImageExif] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const checkLocalStorage = async () => {
     // get all required fields from local storage and show modal if not set
@@ -168,20 +170,25 @@ export default function SesizareNoua({
     setImages(images.filter((_, i) => i !== index));
   };
 
+  const filterSearch = (model: model) => {
+    return replaceDiacritics(model.title.toLowerCase())
+      .includes(replaceDiacritics(searchQuery.toLowerCase()));
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sesizare rapidă</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
       <Text style={styles.label}>Tip sesizare:</Text>
+      <Input
+        placeholder='Caută tip sesizare'
+        value={searchQuery}
+        onChangeText={nextValue => setSearchQuery(nextValue)}
+        style={{margin: '5%', marginBottom: 0}}
+      />
       <View style={{height: 160}}>
       <SafeAreaProvider>
         <ScrollView horizontal={true} directionalLockEnabled={true}>
           <View style={{ flex: 1, flexDirection: 'row', marginTop: 20 }}>
-            {templates.map((template, index) => (
+            {templates.filter(filterSearch).map((template, index) => (
               <IssueCard 
                 key={template.title} 
                 template={template} 
