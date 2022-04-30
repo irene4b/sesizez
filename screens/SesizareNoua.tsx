@@ -27,12 +27,14 @@ import { calculateCoordinateDistance } from '../reusables/calculateCoordinateDis
 import { IssueCard } from '../components/IssueCard';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { replaceDiacritics } from '../reusables/replaceDiacritics';
+import transportPublicBlocatTrafic from '../templates/transportPublicBlocatTrafic';
 
 const templates = [
   trotuarBlocatMasini,
   trotuarDegradat,
   trecerePietoniVopseaStearsa,
   masiniParcateTrecere,
+  transportPublicBlocatTrafic,
   pistaBicicleteNesigura,
   pistaBicicleteInexistenta,
 ];
