@@ -179,7 +179,7 @@ export default function SesizareNoua({
     <View style={styles.container}>
       <Text style={styles.label}>Tip sesizare:</Text>
       <Input
-        placeholder='Caută tip sesizare'
+        placeholder={`Caută printre tipurile de sesizări`}
         value={searchQuery}
         onChangeText={nextValue => setSearchQuery(nextValue)}
         style={{margin: '5%', marginBottom: 0}}
