@@ -54,3 +54,9 @@ export type reportedLocation = {
 }
 
 export type authorities = 'adp' | 'brigadaRutiera' | 'politiaLocala' | 'primarie';
+
+export type model = {
+  title: string;
+  generator: (personal: userPersonalData, location: reportedLocation) => string;
+  destination: (localitate: string, judet: string) => string[];
+}

@@ -3,6 +3,7 @@ import {
   Alert,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
 import { Text, View } from '../components/Themed';
@@ -23,6 +24,8 @@ import pistaBicicleteInexistenta from '../templates/pistaBicicleteInexistenta';
 import masiniParcateTrecere from '../templates/masiniParcateTrecere';
 import { osmReverseLookup } from '../reusables/osmReverseLookup';
 import { calculateCoordinateDistance } from '../reusables/calculateCoordinateDistance';
+import { IssueCard } from '../components/IssueCard';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const templates = [
   trotuarBlocatMasini,
@@ -174,16 +177,24 @@ export default function SesizareNoua({
         darkColor="rgba(255,255,255,0.1)"
       />
       <Text style={styles.label}>Tip sesizare:</Text>
-      <RadioGroup
-        selectedIndex={selectedIndex}
-        onChange={(index) => setSelectedIndex(index)}
-      >
-        {templates.map((template) => (
-          <Radio key={template.title}>{template.title}</Radio>
-        ))}
-      </RadioGroup>
+      <View style={{height: 160}}>
+      <SafeAreaProvider>
+        <ScrollView horizontal={true} directionalLockEnabled={true}>
+          <View style={{ flex: 1, flexDirection: 'row', marginTop: 20 }}>
+            {templates.map((template, index) => (
+              <IssueCard 
+                key={template.title} 
+                template={template} 
+                selected={selectedIndex === index} 
+                onPress={() => setSelectedIndex(index)}
+              />
+            ))}
+          </View>
+        </ScrollView>
+      </SafeAreaProvider>
+      </View>
       <Text style={styles.label}>Imagini:</Text>
-      <View style={styles.imagessContainer}>
+      <View style={styles.imagesContainer}>
         {images.map((img, index) => (
           <TouchableOpacity
             key={`to-${index}`}
@@ -214,7 +225,7 @@ export default function SesizareNoua({
       {isLoading ? (
         <ActivityIndicator animating={true} size="large" color="gray" />
       ) : (
-        <Button style={{ marginTop: 20 }} onPress={sendEmail}>
+        <Button style={{ marginTop: 20, margin: '5%' }} onPress={sendEmail}>
           Trimite
         </Button>
       )}
@@ -226,15 +237,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: '5%',
   },
-  imagessContainer: {
+  imagesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     marginTop: 20,
+    marginLeft: '5%'
   },
   title: {
+    margin: '5%',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -252,5 +264,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 5,
     fontWeight: 'bold',
+    marginLeft: '5%',
   },
 });
