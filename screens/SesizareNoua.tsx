@@ -170,6 +170,9 @@ export default function SesizareNoua({
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
+    if(index === 0) {
+      setFirstImageExif(undefined);
+    }
   };
 
   const filterSearch = (model: model) => {
