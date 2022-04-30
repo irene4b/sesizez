@@ -12,4 +12,4 @@ Toate datele sunt stocate local iar email-urile pentru sesizări sunt generate p
 Foarte curând și pe App Store
 
 
-[Click aici](https://github.com/alexbulintis/sesizez/releases) pentru a descărca un apk din ultimul release de pe Github. (Atenție: aplicația are nevoie de Google Play Services pentru determinarea adresei)
+[Click aici](https://github.com/alexbulintis/sesizez/releases) pentru a descărca un apk din ultimul release de pe Github.
