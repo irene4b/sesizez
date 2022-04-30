@@ -112,8 +112,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   list: {
-    maxHeight: 300,
-    backgroundColor: 'white',
+    maxHeight: 260,
   },
   separator: {
     marginVertical: 30,
