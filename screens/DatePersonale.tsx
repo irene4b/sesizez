@@ -122,7 +122,7 @@ export default function DatePersonale() {
             onPress={useCurrentLocation}
             style={styles.margin}
           >
-            Foloseşte locația curenta
+            Foloseşte locația curentă
           </Button>
           <Input
             placeholder="Strada, numărul"
