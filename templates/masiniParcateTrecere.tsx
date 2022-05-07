@@ -12,7 +12,7 @@ const masiniParcateTrecere = {
     const signature = generateSignature(personal);
     return (
       `${introduction}\n\n` +
-      `Vă scriu în legătură cu mașinile parcate neregulamentar în apropierea trecerii de pietoni de pe lângă ${location.adresaLinie1} (vedeți pozele ataşate și link-ul pentru hartă de mai jos)\n\n` +
+      `Vă scriu în legătură cu mașinile parcate neregulamentar în apropierea trecerii de pietoni de pe lângă ${location.adresaLinie1} (vedeți pozele atașate și link-ul pentru hartă de mai jos)\n\n` +
       `Aceste mașini parcate neregulamentar fac imposibilă observarea în timp util a pietonilor, punându-le acestora viața în pericol când intenționează să treacă strada.\n\n` +
       `Link locație: ${googleMapsLink}\n\n` +
       `Doresc: \n` +
