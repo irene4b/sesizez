@@ -20,8 +20,8 @@ const items = [
     url: 'https://github.com/alexbulintis/sesizez/issues',
   },
   {
-    title: 'Adaugă un oraş nou',
-    description: 'Ajută-ne cu adrese de email ale autorităților din oraşul tău',
+    title: 'Adaugă un oraș nou',
+    description: 'Ajută-ne cu adrese de email ale autorităților din orașul tău',
     url: 'https://github.com/alexbulintis/sesizez/issues',
   },
   {
@@ -57,7 +57,7 @@ export default function DespreScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Sesizez</Text>
       <Text style={styles.subtitle}>
-        Aplicație open-source susținută de Eumeo Tech şi comunitate. Poți şi tu
+        Aplicație open-source susținută de Eumeo Tech și comunitate. Poți și tu
         să contribui!
       </Text>
       <View
