@@ -5,7 +5,7 @@ import { getAuthoritiesEmails } from '../reusables/getAuthoritiesEmails';
 import { reportedLocation, userPersonalData } from '../types';
 
 const masiniParcateTrecere = {
-  title: 'Masini parcate in apropierea trecerii de pietoni',
+  title: 'Mașini parcate în apropierea trecerii de pietoni',
   generator: (personal: userPersonalData, location: reportedLocation) => {
     const introduction = generateIntroduction(personal);
     const googleMapsLink = generateOSMLink(location.lat, location.lng);
