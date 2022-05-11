@@ -7,16 +7,22 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { useThemeColor } from './components/Themed';
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+  const backgroundColor = useThemeColor('background');
+  const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
+      <SafeAreaProvider
+        style={{
+          backgroundColor,
+        }}
+      >
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider
           {...eva}
