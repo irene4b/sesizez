@@ -100,17 +100,19 @@ export default function SesizareNoua({
     const exif = await firstImageExif;
     if (exif?.GPSLatitude && exif?.GPSLongitude && currentLocation) {
       const distanceFromHere = calculateCoordinateDistance(
-        {lat: currentLocation?.lat, lng: currentLocation?.lng},
-        {lat: exif.GPSLatitude, lng: exif.GPSLongitude},
-      )
+        { lat: currentLocation?.lat, lng: currentLocation?.lng },
+        { lat: exif.GPSLatitude, lng: exif.GPSLongitude }
+      );
 
-      if(distanceFromHere > 100) {
-        Alert.alert('Poza a fost făcută departe de locația curentă. Vom folosi locația pozei în sesizare.');
+      if (distanceFromHere > 100) {
+        Alert.alert(
+          'Poza a fost făcută departe de locația curentă. Vom folosi locația pozei în sesizare.'
+        );
 
-        currentLocation = await osmReverseLookup(
-          {lat: exif.GPSLatitude, lng: exif.GPSLongitude}
-        )
-    
+        currentLocation = await osmReverseLookup({
+          lat: exif.GPSLatitude,
+          lng: exif.GPSLongitude,
+        });
       }
     }
 
@@ -145,7 +147,7 @@ export default function SesizareNoua({
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      quality: 0,
+      quality: 0.8,
       exif: true,
     });
 
@@ -160,7 +162,7 @@ export default function SesizareNoua({
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      quality: 0,
+      quality: 0.8,
     });
 
     if (!result.cancelled && result.uri) {
@@ -170,15 +172,16 @@ export default function SesizareNoua({
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
-    if(index === 0) {
+    if (index === 0) {
       setFirstImageExif(undefined);
     }
   };
 
   const filterSearch = (model: model) => {
-    return replaceDiacritics(model.title.toLowerCase())
-      .includes(replaceDiacritics(searchQuery.toLowerCase()));
-  }
+    return replaceDiacritics(model.title.toLowerCase()).includes(
+      replaceDiacritics(searchQuery.toLowerCase())
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -186,24 +189,24 @@ export default function SesizareNoua({
       <Input
         placeholder={`Caută printre tipurile de sesizări`}
         value={searchQuery}
-        onChangeText={nextValue => setSearchQuery(nextValue)}
-        style={{margin: '5%', marginBottom: 0}}
+        onChangeText={(nextValue) => setSearchQuery(nextValue)}
+        style={{ margin: '5%', marginBottom: 0 }}
       />
-      <View style={{height: 160}}>
-      <SafeAreaProvider>
-        <ScrollView horizontal={true} directionalLockEnabled={true}>
-          <View style={{ flex: 1, flexDirection: 'row', marginTop: 20 }}>
-            {templates.filter(filterSearch).map((template, index) => (
-              <IssueCard 
-                key={template.title} 
-                template={template} 
-                selected={selectedIndex === index} 
-                onPress={() => setSelectedIndex(index)}
-              />
-            ))}
-          </View>
-        </ScrollView>
-      </SafeAreaProvider>
+      <View style={{ height: 160 }}>
+        <SafeAreaProvider>
+          <ScrollView horizontal={true} directionalLockEnabled={true}>
+            <View style={{ flex: 1, flexDirection: 'row', marginTop: 20 }}>
+              {templates.filter(filterSearch).map((template, index) => (
+                <IssueCard
+                  key={template.title}
+                  template={template}
+                  selected={selectedIndex === index}
+                  onPress={() => setSelectedIndex(index)}
+                />
+              ))}
+            </View>
+          </ScrollView>
+        </SafeAreaProvider>
       </View>
       <Text style={styles.label}>Imagini:</Text>
       <View style={styles.imagesContainer}>
@@ -255,7 +258,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     marginTop: 20,
-    marginLeft: '5%'
+    marginLeft: '5%',
   },
   title: {
     margin: '5%',
