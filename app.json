@@ -51,10 +51,15 @@
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.eumeo.sesizez",
-      "versionCode": 5
+      "versionCode": 6
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ac8fae68-5a5c-4f37-8781-00a91672785c"
+      }
     }
   }
 }
