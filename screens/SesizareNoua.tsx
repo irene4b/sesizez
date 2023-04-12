@@ -125,7 +125,7 @@ export default function SesizareNoua({
       return;
     }
     try {
-      MailComposer.composeAsync({
+      await MailComposer.composeAsync({
         body: templates[selectedIndex].generator(personalData, currentLocation),
         subject: templates[selectedIndex].title,
         recipients: templates[selectedIndex].destination(
@@ -150,13 +150,13 @@ export default function SesizareNoua({
       quality: 0.8,
       exif: true,
     });
-
-    if (!result.cancelled && result.uri) {
-      setFirstImageExif(result.exif);
-      setImages([...images, result.uri]);
+  
+    if (!result.canceled && result.assets) {
+      setFirstImageExif(result.assets[0].exif);
+      setImages([...images, result.assets[0].uri]);
     }
   };
-
+  
   const shootImage = async () => {
     await ImagePicker.requestCameraPermissionsAsync();
     let result = await ImagePicker.launchCameraAsync({
@@ -164,11 +164,12 @@ export default function SesizareNoua({
       allowsEditing: true,
       quality: 0.8,
     });
-
-    if (!result.cancelled && result.uri) {
-      setImages([...images, result.uri]);
+  
+    if (!result.canceled && result.assets) {
+      setImages([...images, result.assets[0].uri]);
     }
   };
+  
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
