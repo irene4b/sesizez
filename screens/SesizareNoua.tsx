@@ -5,58 +5,24 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-
 import { Text, View } from '../components/Themed';
 import { model, RootTabScreenProps, userPersonalData } from '../types';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  getCurrentLocation,
+  osmReverseLookup,
+  calculateCoordinateDistance,
+} from '../reusables/geo';
 import { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import { Button, Icon, Input } from '@ui-kitten/components';
-import { getCurrentLocation } from '../reusables/getCurrentLocation';
 import * as MailComposer from 'expo-mail-composer';
 import * as ImagePicker from 'expo-image-picker';
-import trotuarBlocatMasini from '../templates/trotuarBlocatMasini';
-import trotuarDegradat from '../templates/trotuarDegradat';
-import trecerePietoniVopseaStearsa from '../templates/trecerePietoniVopseaStearsa';
-import pistaBicicleteNesigura from '../templates/pistaBicicleteNesigura';
-import pistaBicicleteInexistenta from '../templates/pistaBicicleteInexistenta';
-import masiniParcateTrecere from '../templates/masiniParcateTrecere';
-import { osmReverseLookup } from '../reusables/osmReverseLookup';
-import { calculateCoordinateDistance } from '../reusables/calculateCoordinateDistance';
 import { IssueCard } from '../components/IssueCard';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { replaceDiacritics } from '../reusables/replaceDiacritics';
-import transportPublicBlocatTrafic from '../templates/transportPublicBlocatTrafic';
-import iluminatStradalInsuficientSauDefect from '../templates/iluminatStradatInsuficientSauDefect';
-import copaciVegetatieBlocareVizibilitate from '../templates/copaciVegetatieBlocareVizibilitate';
-import locuriJoacaParcuriDegradate from '../templates/locuriJoacaParcuriDegradate';
-import gropiAsfaltDrumDeteriorat from '../templates/gropiAsfaltDrumDeteriorat';
-import masinaAccidentataAbandonata from '../templates/masinaAccidentataAbandonata';
-import cerereIntersectieSuprainaltata from '../templates/cerereIntersectieSuprainaltata';
-import stradaSensUnicCuParcare from '../templates/stradaSensUnicCuParcare';
-import semafoareTemporizareInadecvata from '../templates/semafoareTemporizareInadecvata';
-import poluareAerZoneRezidentiale from '../templates/poluareAerZoneRezidentiale';
 import { getTemplateCounts, setTemplateCount } from '../reusables/templateCounts';
-
-const templates = [
-  trotuarBlocatMasini,
-  trotuarDegradat,
-  trecerePietoniVopseaStearsa,
-  masiniParcateTrecere,
-  transportPublicBlocatTrafic,
-  pistaBicicleteNesigura,
-  pistaBicicleteInexistenta,
-  iluminatStradalInsuficientSauDefect,
-  copaciVegetatieBlocareVizibilitate,
-  locuriJoacaParcuriDegradate,
-  gropiAsfaltDrumDeteriorat,
-  masinaAccidentataAbandonata,
-  cerereIntersectieSuprainaltata,
-  stradaSensUnicCuParcare,
-  semafoareTemporizareInadecvata,
-  poluareAerZoneRezidentiale,
-];
+import { templates } from '../templates';
 
 export default function SesizareNoua({
   navigation,
