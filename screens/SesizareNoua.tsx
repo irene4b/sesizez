@@ -28,6 +28,16 @@ import { IssueCard } from '../components/IssueCard';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { replaceDiacritics } from '../reusables/replaceDiacritics';
 import transportPublicBlocatTrafic from '../templates/transportPublicBlocatTrafic';
+import iluminatStradalInsuficientSauDefect from '../templates/iluminatStradatInsuficientSauDefect';
+import copaciVegetatieBlocareVizibilitate from '../templates/copaciVegetatieBlocareVizibilitate';
+import locuriJoacaParcuriDegradate from '../templates/locuriJoacaParcuriDegradate';
+import gropiAsfaltDrumDeteriorat from '../templates/gropiAsfaltDrumDeteriorat';
+import masinaAccidentataAbandonata from '../templates/masinaAccidentataAbandonata';
+import cerereIntersectieSuprainaltata from '../templates/cerereIntersectieSuprainaltata';
+import stradaSensUnicCuParcare from '../templates/stradaSensUnicCuParcare';
+import semafoareTemporizareInadecvata from '../templates/semafoareTemporizareInadecvata';
+import poluareAerZoneRezidentiale from '../templates/poluareAerZoneRezidentiale';
+import { getTemplateCounts, setTemplateCount } from '../reusables/templateCounts';
 
 const templates = [
   trotuarBlocatMasini,
@@ -37,6 +47,15 @@ const templates = [
   transportPublicBlocatTrafic,
   pistaBicicleteNesigura,
   pistaBicicleteInexistenta,
+  iluminatStradalInsuficientSauDefect,
+  copaciVegetatieBlocareVizibilitate,
+  locuriJoacaParcuriDegradate,
+  gropiAsfaltDrumDeteriorat,
+  masinaAccidentataAbandonata,
+  cerereIntersectieSuprainaltata,
+  stradaSensUnicCuParcare,
+  semafoareTemporizareInadecvata,
+  poluareAerZoneRezidentiale,
 ];
 
 export default function SesizareNoua({
@@ -47,6 +66,7 @@ export default function SesizareNoua({
   const [firstImageExif, setFirstImageExif] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortedTemplates, setSortedTemplates] = useState(templates);
 
   const checkLocalStorage = async () => {
     // get all required fields from local storage and show modal if not set
@@ -70,6 +90,10 @@ export default function SesizareNoua({
 
   useEffect(() => {
     checkLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    sortTemplatesByUsage();
   }, []);
 
   const sendEmail = async () => {
@@ -134,10 +158,11 @@ export default function SesizareNoua({
         ),
         attachments: images,
       });
+      await setTemplateCount(templates[selectedIndex].title);
     } catch (e) {
       Alert.alert(
         'Eroare',
-        'Nu am putut trimite emailul. Te rugăm să încerci din nou.'
+        'Nu am putut trimite emailul. Te rugăm să încerci din nou. Verifica dacă ești conectat cu o adresă validă pe aplicația de email.'
       );
     }
     setIsLoading(false);
@@ -184,6 +209,14 @@ export default function SesizareNoua({
     );
   };
 
+  const sortTemplatesByUsage = async () => {
+    const counts = await getTemplateCounts();
+    const sorted = [...templates].sort(
+      (a, b) => (counts[b.title] || 0) - (counts[a.title] || 0)
+    );
+    setSortedTemplates(sorted);
+  };  
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Tip sesizare:</Text>
@@ -197,7 +230,7 @@ export default function SesizareNoua({
         <SafeAreaProvider>
           <ScrollView horizontal={true} directionalLockEnabled={true}>
             <View style={{ flex: 1, flexDirection: 'row', marginTop: 20 }}>
-              {templates.filter(filterSearch).map((template, index) => (
+              {sortedTemplates.filter(filterSearch).map((template, index) => (
                 <IssueCard
                   key={template.title}
                   template={template}
