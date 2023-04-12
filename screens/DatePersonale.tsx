@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 import { Button, Icon, Input } from '@ui-kitten/components';
 import { Text, View } from '../components/Themed';
@@ -23,6 +24,8 @@ export default function DatePersonale() {
   const [adresaLinie2, setAdresaLinie2] = React.useState('');
   const [localitate, setLocalitate] = React.useState('');
   const [judet, setJudet] = React.useState('');
+
+  const navigation = useNavigation();
 
   const saveAllInAsyncStorage = () => {
     AsyncStorage.setItem('nume', nume);
@@ -72,8 +75,10 @@ export default function DatePersonale() {
 
   const saveAndAlert = () => {
     saveAllInAsyncStorage();
-    Alert.alert('Datele au fost salvate.');
-  };
+    Alert.alert('Datele au fost salvate.', '', [
+      { text: 'OK', onPress: () => navigation.goBack() },
+    ]);
+  };  
 
   return (
     <KeyboardAvoidingView

@@ -1,28 +1,22 @@
 import {
   ActivityIndicator,
-  Alert,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { model, RootTabScreenProps, userPersonalData } from '../types';
+import { model, RootTabScreenProps } from '../types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  getCurrentLocation,
-  osmReverseLookup,
-  calculateCoordinateDistance,
-} from '../reusables/geo';
 import { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import { Button, Icon, Input } from '@ui-kitten/components';
-import * as MailComposer from 'expo-mail-composer';
 import * as ImagePicker from 'expo-image-picker';
 import { IssueCard } from '../components/IssueCard';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { replaceDiacritics } from '../reusables/replaceDiacritics';
-import { getTemplateCounts, setTemplateCount } from '../reusables/templateCounts';
+import { getTemplateCounts } from '../reusables/templateCounts';
 import { templates } from '../templates';
+import { sendEmail } from '../reusables/emailUtils';
 
 export default function SesizareNoua({
   navigation,
@@ -61,78 +55,6 @@ export default function SesizareNoua({
   useEffect(() => {
     sortTemplatesByUsage();
   }, []);
-
-  const sendEmail = async () => {
-    setIsLoading(true);
-    const isProfileCompleted = await checkLocalStorage();
-    if (!isProfileCompleted) {
-      setIsLoading(false);
-      return;
-    }
-    if (!images.length) {
-      Alert.alert('Trebuie să adaugi cel puțin o poză doveditoare.');
-      setIsLoading(false);
-      return;
-    }
-    const personalData: userPersonalData = {
-      nume: (await AsyncStorage.getItem('nume')) || '',
-      prenume: (await AsyncStorage.getItem('prenume')) || '',
-      cnp: (await AsyncStorage.getItem('cnp')) || '',
-      adresaLinie1: (await AsyncStorage.getItem('adresaLinie1')) || '',
-      adresaLinie2: (await AsyncStorage.getItem('adresaLinie2')) || '',
-      localitate: (await AsyncStorage.getItem('localitate')) || '',
-      judet: (await AsyncStorage.getItem('judet')) || '',
-    };
-
-    let currentLocation = await getCurrentLocation();
-
-    // if image was taken further away from the user
-    const exif = await firstImageExif;
-    if (exif?.GPSLatitude && exif?.GPSLongitude && currentLocation) {
-      const distanceFromHere = calculateCoordinateDistance(
-        { lat: currentLocation?.lat, lng: currentLocation?.lng },
-        { lat: exif.GPSLatitude, lng: exif.GPSLongitude }
-      );
-
-      if (distanceFromHere > 100) {
-        Alert.alert(
-          'Poza a fost făcută departe de locația curentă. Vom folosi locația pozei în sesizare.'
-        );
-
-        currentLocation = await osmReverseLookup({
-          lat: exif.GPSLatitude,
-          lng: exif.GPSLongitude,
-        });
-      }
-    }
-
-    if (!currentLocation) {
-      setIsLoading(false);
-      Alert.alert(
-        'Eroare',
-        'Nu am putut obține locația curentă. Te rugăm să încerci din nou.'
-      );
-      return;
-    }
-    try {
-      await MailComposer.composeAsync({
-        body: templates[selectedIndex].generator(personalData, currentLocation),
-        subject: templates[selectedIndex].title,
-        recipients: templates[selectedIndex].destination(
-          currentLocation.localitate,
-          currentLocation.judet
-        ),
-        attachments: images,
-      });
-      await setTemplateCount(templates[selectedIndex].title);
-    } catch (e) {
-      Alert.alert(
-        'Eroare',
-        'Nu am putut trimite emailul. Te rugăm să încerci din nou. Verifica dacă ești conectat cu o adresă validă pe aplicația de email.'
-      );
-    }
-    setIsLoading(false);
-  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -240,7 +162,7 @@ export default function SesizareNoua({
       {isLoading ? (
         <ActivityIndicator animating={true} size="large" color="gray" />
       ) : (
-        <Button style={{ marginTop: 20, margin: '5%' }} onPress={sendEmail}>
+        <Button style={{ marginTop: 20, margin: '5%' }} onPress={() => sendEmail(setIsLoading, checkLocalStorage, images, firstImageExif, selectedIndex, templates)}>
           Trimite
         </Button>
       )}
