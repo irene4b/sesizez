@@ -12,13 +12,14 @@ const pistaBicicleteInexistenta = {
     const signature = generateSignature(personal);
     return (
       `${introduction}\n\n` +
-      `Vă scriu în legătură cu circulația bicicletelor din apropierea ${location.adresaLinie1}, link hartă: ${googleMapsLink}\n\n` +
-      `În prezent oricine circulă cu bicicleta sau trotineta electrică pe această stradă este pus în pericol de autovehiculele care circulă cu mare viteză. Situația curentă se poate vedea și în pozele atașate.\n\n` +
-      `Doresc crearea unei piste de biciclete separată și delimitată cu elemente de protecție de restul benzilor pentru a putea circula în siguranță cu bicicleta pe stradă:\n\n` +
-      `- crearea unei piste de biciclete ce respectă standardele europene\n` +
-      `- separarea pistei de biciclete de orice tip de trafic de mare viteză\n` +
-      `- instalarea unor stâlpi sau unor borduri ce nu permit accesul mașinilor pe pistă\n` +
-      `- avertizarea sau amendarea autovehiculelor oprite neregulamentar\n\n` +
+      `Vă adresez această sesizare pentru a sublinia importanța creării unei piste de biciclete în apropierea ${location.adresaLinie1}, link hartă: ${googleMapsLink}. Circulația pe bicicletă și trotinetă electrică reprezintă alternative viabile și ecologice la autovehicule, contribuind la reducerea emisiilor poluante, traficului și îmbunătățirea sănătății cetățenilor.\n\n` +
+      `Cu toate acestea, în prezent, utilizatorii de biciclete și trotinete electrice se confruntă cu numeroase pericole pe această stradă, datorită autovehiculelor care circulă cu viteză mare și lipsei unei infrastructuri adecvate. Situația curentă se poate vedea și în pozele atașate.\n\n` +
+      `Pentru a încuraja și asigura un transport activ și sigur în zonă, vă rog să luați în considerare următoarele măsuri:\n\n` +
+      `- crearea unei piste de biciclete separate și delimitate, ce respectă standardele europene\n` +
+      `- separarea pistei de biciclete de restul traficului prin intermediul unor bariere de protecție\n` +
+      `- instalarea unor stâlpi sau borduri ce restricționează accesul mașinilor pe pistă\n` +
+      `- avertizarea sau amendarea autovehiculelor oprite neregulamentar pe pistă\n\n` +
+      `Aceste măsuri pot contribui la promovarea unui transport durabil și la îmbunătățirea calității vieții în zonă. Vă mulțumesc pentru atenția acordată și aștept cu interes răspunsul dumneavoastră.\n\n` +
       `${signature}`
     );
   },
