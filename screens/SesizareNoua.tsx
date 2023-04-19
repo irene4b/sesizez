@@ -162,7 +162,7 @@ export default function SesizareNoua({
       {isLoading ? (
         <ActivityIndicator animating={true} size="large" color="gray" />
       ) : (
-        <Button style={{ marginTop: 20, margin: '5%' }} onPress={() => sendEmail(setIsLoading, checkLocalStorage, images, firstImageExif, selectedIndex, templates)}>
+        <Button style={{ marginTop: 20, margin: '5%' }} onPress={() => sendEmail(setIsLoading, checkLocalStorage, images, firstImageExif, selectedIndex, sortedTemplates)}>
           Trimite
         </Button>
       )}
