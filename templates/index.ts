@@ -14,6 +14,7 @@ import cerereIntersectieSuprainaltata from './cerereIntersectieSuprainaltata';
 import stradaSensUnicCuParcare from './stradaSensUnicCuParcare';
 import semafoareTemporizareInadecvata from './semafoareTemporizareInadecvata';
 import poluareAerZoneRezidentiale from './poluareAerZoneRezidentiale';
+import eliminareReclameJocuriNoroc from './eliminareReclameJocuriNoroc';
 
 export const templates = [
   trotuarBlocatMasini,
@@ -32,4 +33,5 @@ export const templates = [
   stradaSensUnicCuParcare,
   semafoareTemporizareInadecvata,
   poluareAerZoneRezidentiale,
+  eliminareReclameJocuriNoroc,
 ];
