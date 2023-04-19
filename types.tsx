@@ -58,6 +58,6 @@ export type authorities = 'adp' | 'brigadaRutiera' | 'politiaLocala' | 'primarie
 
 export type model = {
   title: string;
-  generator: (personal: userPersonalData, location: reportedLocation) => string;
+  generator: (personal: userPersonalData, location: reportedLocation) => Promise<string>;
   destination: (localitate: string, judet: string) => string[];
 }

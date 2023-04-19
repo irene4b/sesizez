@@ -6,9 +6,9 @@ import { reportedLocation, userPersonalData } from "../types";
 
 const trotuarDegradat = {
   title: 'Trotuar degradat',
-  generator: (personal: userPersonalData, location: reportedLocation) => {
+  generator: async (personal: userPersonalData, location: reportedLocation) => {
     const introduction = generateIntroduction(personal);
-    const googleMapsLink = generateOSMLink(location.lat, location.lng);
+    const googleMapsLink = await generateOSMLink(location.lat, location.lng);
     const signature = generateSignature(personal);
     return `${introduction}\n\n` +
      `Aduc în atenția dvs. câteva dintre problemele de pe trotuarele din apropierea ${location.adresaLinie1}.\n` +

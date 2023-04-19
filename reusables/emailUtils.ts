@@ -69,7 +69,7 @@ export const sendEmail = async (
   }
   try {
     await MailComposer.composeAsync({
-      body: templates[selectedIndex].generator(personalData, currentLocation),
+      body: await templates[selectedIndex].generator(personalData, currentLocation),
       subject: templates[selectedIndex].title,
       recipients: templates[selectedIndex].destination(
         currentLocation.localitate,

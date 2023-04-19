@@ -5,9 +5,9 @@ import { reportedLocation, userPersonalData } from '../types';
 
 const model = {
   title: 'Model Sesizare',
-  generator: (personal: userPersonalData, location: reportedLocation) => {
+  generator: async (personal: userPersonalData, location: reportedLocation) => {
     const introduction = generateIntroduction(personal);
-    const googleMapsLink = generateOSMLink(location.lat, location.lng);
+    const googleMapsLink = await generateOSMLink(location.lat, location.lng);
     const signature = generateSignature(personal);
     return `${introduction}, ${googleMapsLink}\n\n${signature}`;
   },

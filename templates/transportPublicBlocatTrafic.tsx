@@ -6,9 +6,9 @@ import { getAuthoritiesEmails } from '../reusables/getAuthoritiesEmails';
 
 const transportPublicBlocatTrafic: model = {
   title: 'Trafic intens ce blochează transportul în comun',
-  generator: (personal: userPersonalData, location: reportedLocation) => {
+  generator: async (personal: userPersonalData, location: reportedLocation) => {
     const introduction = generateIntroduction(personal);
-    const googleMapsLink = generateOSMLink(location.lat, location.lng);
+    const googleMapsLink = await generateOSMLink(location.lat, location.lng);
     const signature = generateSignature(personal);
     return `${introduction}\n\n` + 
       `Vă scriu în legătură cu traficul intens din apropierea ${location.adresaLinie1} la orele de vârf, care afectează în special sutele (sau chiar miile) de oameni ce călătoresc cu modalitățile de transport în comun din zonă.\n\n` +
