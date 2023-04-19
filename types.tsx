@@ -39,6 +39,7 @@ export type userPersonalData = {
   prenume: string;
   adresaLinie1: string;
   adresaLinie2: string;
+  gen: string;
   judet: string;
   localitate: string;
   cnp: string;

@@ -11,10 +11,21 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
-import { Button, Icon, Input } from '@ui-kitten/components';
+import { Button, Icon, Input, Radio, RadioGroup } from '@ui-kitten/components';
 import { Text, View } from '../components/Themed';
 import React, { useEffect } from 'react';
 import { getCurrentLocation } from '../reusables/getCurrentLocation';
+
+const genderOptions = [
+  { text: 'Feminin (subsemnata, ea)', value: 'F' },
+  { text: 'Masculin (subsemnatul, el)', value: 'M' },
+  { text: 'Evitare cuvinte cu gen', value: 'NB' },
+  { text: 'Ambele', value: 'NBM' },
+];
+
+const renderOption = (item: { text: string }, index: React.Key | null | undefined) => (
+  <Radio key={index}>{item.text}</Radio>
+);
 
 export default function DatePersonale() {
   const [nume, setNume] = React.useState('');
@@ -24,6 +35,10 @@ export default function DatePersonale() {
   const [adresaLinie2, setAdresaLinie2] = React.useState('');
   const [localitate, setLocalitate] = React.useState('');
   const [judet, setJudet] = React.useState('');
+  const [gen, setGen] = React.useState('');
+
+  const [selectedGenderIndex, setSelectedGenderIndex] = React.useState(-1);
+
 
   const navigation = useNavigation();
 
@@ -31,16 +46,24 @@ export default function DatePersonale() {
     AsyncStorage.setItem('nume', nume);
     AsyncStorage.setItem('prenume', prenume);
     AsyncStorage.setItem('cnp', cnp);
+    AsyncStorage.setItem('gen', gen);
     AsyncStorage.setItem('adresaLinie1', adresaLinie1);
     AsyncStorage.setItem('adresaLinie2', adresaLinie2);
     AsyncStorage.setItem('localitate', localitate);
     AsyncStorage.setItem('judet', judet);
   };
 
-  const getAllFromAsyncStorage = () => {
+  const getAllFromAsyncStorage = async () => {
     AsyncStorage.getItem('nume').then((value) => setNume(value || ''));
     AsyncStorage.getItem('prenume').then((value) => setPrenume(value || ''));
     AsyncStorage.getItem('cnp').then((value) => setCNP(value || ''));
+    AsyncStorage.getItem('gen').then((value) =>{
+      setGen(value || '');
+      if(value) {
+        const index = genderOptions.findIndex((item) => item.value === value);
+        setSelectedGenderIndex(index);
+      }
+    });
     AsyncStorage.getItem('adresaLinie1').then((value) =>
       setAdresaLinie1(value || '')
     );
@@ -59,7 +82,13 @@ export default function DatePersonale() {
 
   useEffect(() => {
     saveAllInAsyncStorage();
-  }, [nume, prenume, cnp, adresaLinie1, adresaLinie2, localitate, judet]);
+  }, [nume, prenume, cnp, adresaLinie1, adresaLinie2, localitate, judet, gen]);
+
+  useEffect(() => {
+    setGen(
+      genderOptions[selectedGenderIndex]?.value || ''
+    )
+  }, [selectedGenderIndex])
 
   const useCurrentLocation = async () => {
     const currentLocation = await getCurrentLocation();
@@ -116,11 +145,15 @@ export default function DatePersonale() {
             value={cnp}
             onChangeText={(newCNP) => setCNP(newCNP)}
           />
-          <View
-            style={styles.separator}
-            lightColor="#eee"
-            darkColor="rgba(255,255,255,0.1)"
-          />
+          <Text style={styles.title}>Gen:</Text>
+          <RadioGroup
+            selectedIndex={selectedGenderIndex}
+            onChange={(index) => {
+              setSelectedGenderIndex(index)
+            }}
+          >
+            {genderOptions.map(renderOption)}
+          </RadioGroup>
           <Text style={styles.title}>Adresa de domiciliu</Text>
           <Button
             accessoryLeft={<Icon name="navigation-2-outline" />}
@@ -181,6 +214,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    marginTop: 20,
   },
   subtitle: {
     fontSize: 13,

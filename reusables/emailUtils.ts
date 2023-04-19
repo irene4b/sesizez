@@ -34,6 +34,7 @@ export const sendEmail = async (
     adresaLinie2: (await AsyncStorage.getItem('adresaLinie2')) || '',
     localitate: (await AsyncStorage.getItem('localitate')) || '',
     judet: (await AsyncStorage.getItem('judet')) || '',
+    gen: (await AsyncStorage.getItem('gen')) || '',
   };
 
   let currentLocation = await getCurrentLocation();
