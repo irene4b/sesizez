@@ -1,10 +1,10 @@
-import axios from 'axios';
+import api from './api';
 
 const generateOSMLink = async (latitude: string | number, longitude: string | number) => {
   const longUrl = `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=18/${latitude}/${longitude}`;
 
   try {
-    const response = await axios.get('https://is.gd/create.php', {
+    const response = await api.get('https://is.gd/create.php', {
       params: {
         format: 'simple',
         url: longUrl,
