@@ -3,6 +3,7 @@ import generateIntroduction from '../reusables/generateIntroduction';
 import generateSignature from '../reusables/generateSignature';
 import { getAuthoritiesEmails } from '../reusables/getAuthoritiesEmails';
 import { reportedLocation, userPersonalData } from '../types';
+import { ifMetroStationNearby, ifSchoolNearby } from '../reusables/ifNearby';
 
 const cerereIntersectieSuprainaltata = {
   title: 'Cerere intersecție supraînălțată',
@@ -19,6 +20,8 @@ const cerereIntersectieSuprainaltata = {
       `- creșterea vizibilității pietonilor și șoferilor\n` +
       `- facilitarea accesului pentru persoanele cu dizabilități motorii și părinții care transportă copii în cărucioare\n` +
       `- încurajarea traversării străzii în siguranță și în mod responsabil\n\n` +
+      await ifSchoolNearby(location.lat, location.lng, (schoolName => `Va rog sa tineti cont de faptul ca in apropiere se afla ${schoolName}, iar in zilele saptamanii zeci sau chiar sute de copii pot traversa strazile din imprejurimi.\n\n`)) + 
+      await ifMetroStationNearby(location.lat, location.lng, (stationName => `De asemenea, in apropiere se afla ${stationName}, iar o intersectie suprainaltata ar creste siguranta sutelor (sau chiar miilor) de oameni ce calatoresc zi de zi.\n\n`)) +
       `Sunt convins că investiția într-o intersecție supraînălțată în această zonă va aduce beneficii considerabile comunității și va contribui la creșterea calității vieții locuitorilor.\n\n` +
       `${signature}`
     );

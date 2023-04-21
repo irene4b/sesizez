@@ -7,6 +7,22 @@ type Props = {
   lng: number;
 };
 
+const findNearbyRoads = async (lat: number, lng: number): Promise<string[] | null> => {
+  const url = `https://nominatim.openstreetmap.org/search?format=json&lat=${lat}&lon=${lng}&street=*`;
+  const response = await axios.get(url, {
+    headers: {
+      'accept-language': 'ro',
+    },
+  });
+
+  if (!response.data || !response.data.length) {
+    return null;
+  }
+
+  const nearbyRoads = response.data.map((road: any) => road.address.road);
+  return nearbyRoads;
+};
+
 export const osmReverseLookup = async (
   props: Props
 ): Promise<reportedLocation> => {
@@ -14,7 +30,7 @@ export const osmReverseLookup = async (
   const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
   const response = await axios.get(url, {
     headers: {
-      'accept-language': 'en-US',
+      'accept-language': 'en',
     },
   });
 
@@ -32,7 +48,12 @@ export const osmReverseLookup = async (
     adresaLinie1 += `nr. ${response.data.address.house_number}`;
 
   // adauga reper
-  if (
+  const nearbyRoads = await findNearbyRoads(lat, lng);
+  if (nearbyRoads && nearbyRoads.length > 1) {
+    // If there are at least two nearby roads, add intersection information
+    adresaLinie1 += ` (pe langa intersectia dintre ${nearbyRoads[0]} si ${nearbyRoads[1]})`;
+  } 
+  else if (
     response.data.addresstype === 'building' &&
     response.data.address.building
   )
