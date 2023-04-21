@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { Alert } from 'react-native';
 import { reportedLocation } from '../types';
+import api from './api';
 
 type Props = {
   lat: number;
@@ -9,7 +9,7 @@ type Props = {
 
 const findNearbyRoads = async (lat: number, lng: number): Promise<string[] | null> => {
   const url = `https://nominatim.openstreetmap.org/search?format=json&lat=${lat}&lon=${lng}&street=*`;
-  const response = await axios.get(url, {
+  const response = await api.get(url, {
     headers: {
       'accept-language': 'ro',
     },
@@ -28,7 +28,7 @@ export const osmReverseLookup = async (
 ): Promise<reportedLocation> => {
   const { lat, lng } = props;
   const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
-  const response = await axios.get(url, {
+  const response = await api.get(url, {
     headers: {
       'accept-language': 'en',
     },

@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./api";
 
 export const osmSearchNearby = async (
   props: { lat: number; lng: number; query: string }
@@ -7,7 +7,7 @@ export const osmSearchNearby = async (
   const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&viewbox=${lng - 0.01},${lat + 0.01},${lng + 0.01},${lat - 0.01}&bounded=1&addressdetails=1`;
 
   try {
-    const response = await axios.get(url, {
+    const response = await api.get(url, {
       headers: {
         'accept-language': 'ro,en',
       },
