@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Text } from '../components/Themed';
+
 import {
-  View,
-  Text,
   StyleSheet,
-  TouchableOpacity,
   Linking,
   Platform,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCurrentLocation } from '../reusables/getCurrentLocation';
@@ -90,7 +90,7 @@ const ContactBrigadaRutiera: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>
         Pentru a crește șansele ca sesizarea ta să aibă efect:
       </Text>
@@ -121,7 +121,7 @@ const ContactBrigadaRutiera: React.FC = () => {
       >
         Gata, am terminat
       </Button>
-    </View>
+    </ScrollView>
   );
 };
 

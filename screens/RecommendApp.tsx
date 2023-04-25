@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Linking,
-  Platform,
-} from 'react-native';
+import { Text, View } from '../components/Themed';
+import { StyleSheet, Linking, Platform } from 'react-native';
 import { Button } from '@ui-kitten/components';
 import { useNavigation } from '@react-navigation/native';
 
