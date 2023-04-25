@@ -13,3 +13,5 @@ Foarte curând și pe App Store
 
 
 [Click aici](https://github.com/alexbulintis/sesizez/releases) pentru a descărca un apk din ultimul release de pe Github.
+
+Politica de confidentialitate: https://github.com/alexbulintis/sesizez/blob/gh-pages/privacy.md
