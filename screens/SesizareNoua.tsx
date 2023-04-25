@@ -104,6 +104,25 @@ export default function SesizareNoua({
     setSortedTemplates(sorted);
   };
 
+  const resetState = () => {
+    setImages([]);
+    setFirstImageExif('');
+    setSearchQuery('');
+    setSelectedIndex(0);
+  };
+
+  const sendAndReset = async () => {
+    await sendEmail(
+      setIsLoading,
+      checkLocalStorage,
+      images,
+      firstImageExif,
+      selectedIndex,
+      sortedTemplates
+    );
+    resetState();
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Tip sesizare:</Text>
@@ -163,16 +182,7 @@ export default function SesizareNoua({
       ) : (
         <Button
           style={{ marginTop: 20, margin: '5%' }}
-          onPress={() =>
-            sendEmail(
-              setIsLoading,
-              checkLocalStorage,
-              images,
-              firstImageExif,
-              selectedIndex,
-              sortedTemplates
-            )
-          }
+          onPress={() => sendAndReset()}
         >
           Trimite
         </Button>
