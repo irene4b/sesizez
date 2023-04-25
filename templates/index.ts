@@ -19,6 +19,7 @@ import lipsaPistaBicicleteSensGiratoriu from './lipsaPistaBicicleteSensGiratoriu
 import lipsaCopaci from './lipsaCopaci';
 import cerereMarcajVirajStangaBiciclete from './cerereMarcajVirajStangaBiciclete';
 import instalareParcariBiciclete from './instalareParcariBiciclete';
+import imbunatatireIntersectiiPisteBiciclete from './imbunatatireIntersectiiPisteBiciclete';
 
 export const templates = [
   trotuarBlocatMasini,
@@ -42,4 +43,5 @@ export const templates = [
   lipsaPistaBicicleteSensGiratoriu,
   cerereMarcajVirajStangaBiciclete,
   instalareParcariBiciclete,
+  imbunatatireIntersectiiPisteBiciclete,
 ];
