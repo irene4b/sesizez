@@ -18,6 +18,7 @@ import eliminareReclameJocuriNoroc from './eliminareReclameJocuriNoroc';
 import lipsaPistaBicicleteSensGiratoriu from './lipsaPistaBicicleteSensGiratoriu';
 import lipsaCopaci from './lipsaCopaci';
 import cerereMarcajVirajStangaBiciclete from './cerereMarcajVirajStangaBiciclete';
+import instalareParcariBiciclete from './instalareParcariBiciclete';
 
 export const templates = [
   trotuarBlocatMasini,
@@ -40,4 +41,5 @@ export const templates = [
   lipsaCopaci,
   lipsaPistaBicicleteSensGiratoriu,
   cerereMarcajVirajStangaBiciclete,
+  instalareParcariBiciclete,
 ];
