@@ -17,6 +17,7 @@ import poluareAerZoneRezidentiale from './poluareAerZoneRezidentiale';
 import eliminareReclameJocuriNoroc from './eliminareReclameJocuriNoroc';
 import lipsaPistaBicicleteSensGiratoriu from './lipsaPistaBicicleteSensGiratoriu';
 import lipsaCopaci from './lipsaCopaci';
+import cerereMarcajVirajStangaBiciclete from './cerereMarcajVirajStangaBiciclete';
 
 export const templates = [
   trotuarBlocatMasini,
@@ -38,4 +39,5 @@ export const templates = [
   eliminareReclameJocuriNoroc,
   lipsaCopaci,
   lipsaPistaBicicleteSensGiratoriu,
+  cerereMarcajVirajStangaBiciclete,
 ];

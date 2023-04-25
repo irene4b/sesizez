@@ -4,7 +4,7 @@
     "name": "Sesizez",
     "slug": "sesizez",
     "owner": "alexbulintis0",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "sesizez",
@@ -50,7 +50,7 @@
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.eumeo.sesizez",
-      "versionCode": 9
+      "versionCode": 10
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
