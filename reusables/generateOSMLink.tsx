@@ -1,6 +1,9 @@
 import api from './api';
 
-const generateOSMLink = async (latitude: string | number, longitude: string | number) => {
+const generateOSMLink = async (
+  latitude: string | number,
+  longitude: string | number
+) => {
   const longUrl = `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=18/${latitude}/${longitude}`;
 
   try {

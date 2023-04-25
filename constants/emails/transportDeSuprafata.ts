@@ -8,4 +8,4 @@ export const TRANSPORT_DE_SUPRAFATA = {
   'Iași - Iași': ['pr@sctpiasi.ro'],
   'Craiova - Dolj': ['office@rat-craiova.ro'],
   'Cluj-Napoca - Cluj': ['sugestii@ctpcj.ro'],
-}
+};

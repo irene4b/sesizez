@@ -24,5 +24,4 @@ const generateIntroduction = (personal: userPersonalData) => {
   return `${prefix} ${nume} ${prenume}, cu domiciliul în ${localitate}, ${judet}, ${adresaLinie1}, CNP ${cnp}, formulez prezenta sesizare:`;
 };
 
-
 export default generateIntroduction;

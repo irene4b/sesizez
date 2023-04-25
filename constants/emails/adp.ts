@@ -8,4 +8,4 @@ export const ADP = {
   'Iași - Iași': ['contact@djadp.ro'],
   'Craiova - Dolj': ['office@raadpflcraiova.ro'],
   'Cluj-Napoca - Cluj': ['office@radpcj.ro'],
-}
+};

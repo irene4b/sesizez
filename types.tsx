@@ -4,7 +4,10 @@
  */
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
+import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 declare global {
@@ -19,20 +22,19 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  Screen
->;
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
   SesizareNoua: undefined;
   Despre: undefined;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabParamList, Screen>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 
 export type userPersonalData = {
   nume: string;
@@ -43,7 +45,7 @@ export type userPersonalData = {
   judet: string;
   localitate: string;
   cnp: string;
-}
+};
 
 export type reportedLocation = {
   lat: number;
@@ -52,12 +54,19 @@ export type reportedLocation = {
   adresaLinie2: string;
   judet: string;
   localitate: string;
-}
+};
 
-export type authorities = 'adp' | 'brigadaRutiera' | 'politiaLocala' | 'primarie';
+export type authorities =
+  | 'adp'
+  | 'brigadaRutiera'
+  | 'politiaLocala'
+  | 'primarie';
 
 export type model = {
   title: string;
-  generator: (personal: userPersonalData, location: reportedLocation) => Promise<string>;
+  generator: (
+    personal: userPersonalData,
+    location: reportedLocation
+  ) => Promise<string>;
   destination: (localitate: string, judet: string) => string[];
-}
+};

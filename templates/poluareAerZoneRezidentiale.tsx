@@ -27,7 +27,11 @@ const poluareAerZoneRezidentiale = {
     );
   },
   destination: (localitate: string, judet: string) => {
-    return getAuthoritiesEmails(localitate, judet, 'primarie politiaLocala anpm');
+    return getAuthoritiesEmails(
+      localitate,
+      judet,
+      'primarie politiaLocala anpm'
+    );
   },
 };
 

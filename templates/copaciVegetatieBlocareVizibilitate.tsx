@@ -5,7 +5,8 @@ import { getAuthoritiesEmails } from '../reusables/getAuthoritiesEmails';
 import { reportedLocation, userPersonalData } from '../types';
 
 const copaciVegetatieBlocareVizibilitate = {
-  title: 'Copaci și vegetație care blochează semne de circulație sau vizibilitatea',
+  title:
+    'Copaci și vegetație care blochează semne de circulație sau vizibilitatea',
   generator: async (personal: userPersonalData, location: reportedLocation) => {
     const introduction = generateIntroduction(personal);
     const googleMapsLink = await generateOSMLink(location.lat, location.lng);
@@ -22,7 +23,11 @@ const copaciVegetatieBlocareVizibilitate = {
     );
   },
   destination: (localitate: string, judet: string) => {
-    return getAuthoritiesEmails(localitate, judet, 'primarie administratiaStrazilor');
+    return getAuthoritiesEmails(
+      localitate,
+      judet,
+      'primarie administratiaStrazilor'
+    );
   },
 };
 

@@ -63,13 +63,13 @@ export default function SesizareNoua({
       quality: 0.8,
       exif: true,
     });
-  
+
     if (!result.canceled && result.assets) {
       setFirstImageExif(result.assets[0].exif);
       setImages([...images, result.assets[0].uri]);
     }
   };
-  
+
   const shootImage = async () => {
     await ImagePicker.requestCameraPermissionsAsync();
     let result = await ImagePicker.launchCameraAsync({
@@ -77,12 +77,11 @@ export default function SesizareNoua({
       allowsEditing: true,
       quality: 0.8,
     });
-  
+
     if (!result.canceled && result.assets) {
       setImages([...images, result.assets[0].uri]);
     }
   };
-  
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
@@ -103,7 +102,7 @@ export default function SesizareNoua({
       (a, b) => (counts[b.title] || 0) - (counts[a.title] || 0)
     );
     setSortedTemplates(sorted);
-  };  
+  };
 
   return (
     <View style={styles.container}>
@@ -111,7 +110,7 @@ export default function SesizareNoua({
       <Input
         placeholder={`Caută printre tipurile de sesizări`}
         value={searchQuery}
-        onChangeText={(nextValue) => setSearchQuery(nextValue)}
+        onChangeText={nextValue => setSearchQuery(nextValue)}
         style={{ margin: '5%', marginBottom: 0 }}
       />
       <View style={{ height: 160 }}>
@@ -162,7 +161,19 @@ export default function SesizareNoua({
       {isLoading ? (
         <ActivityIndicator animating={true} size="large" color="gray" />
       ) : (
-        <Button style={{ marginTop: 20, margin: '5%' }} onPress={() => sendEmail(setIsLoading, checkLocalStorage, images, firstImageExif, selectedIndex, sortedTemplates)}>
+        <Button
+          style={{ marginTop: 20, margin: '5%' }}
+          onPress={() =>
+            sendEmail(
+              setIsLoading,
+              checkLocalStorage,
+              images,
+              firstImageExif,
+              selectedIndex,
+              sortedTemplates
+            )
+          }
+        >
           Trimite
         </Button>
       )}

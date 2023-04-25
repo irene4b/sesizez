@@ -13,7 +13,7 @@ export const sendEmail = async (
   images: Array<string>,
   firstImageExif: any,
   selectedIndex: number,
-  templates: any[],
+  templates: any[]
 ) => {
   setIsLoading(true);
   const isProfileCompleted = await checkLocalStorage();
@@ -69,7 +69,10 @@ export const sendEmail = async (
   }
   try {
     await MailComposer.composeAsync({
-      body: await templates[selectedIndex].generator(personalData, currentLocation),
+      body: await templates[selectedIndex].generator(
+        personalData,
+        currentLocation
+      ),
       subject: templates[selectedIndex].title,
       recipients: templates[selectedIndex].destination(
         currentLocation.localitate,

@@ -8,4 +8,4 @@ export const ADMINISTRATIA_STRAZILOR = {
   'Iași - Iași': ['office@citadinis.ro'],
   'Craiova - Dolj': ['office@raadpflcraiova.ro'],
   'Cluj-Napoca - Cluj': ['administrarecaipublice@primariaclujnapoca.ro'],
-}
+};

@@ -8,4 +8,4 @@ export const POLITIA_LOCALA = {
   'Iași - Iași': ['politialocalais@yahoo.com', 'contact@politialocala-iasi.ro'],
   'Craiova - Dolj': ['office@politialocalacraiova.ro'],
   'Cluj-Napoca - Cluj': ['politialocala@primariaclujnapoca.ro'],
-}
+};

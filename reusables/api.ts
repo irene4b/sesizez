@@ -24,10 +24,11 @@ const createRateLimiter = (interval: number): (() => Promise<void>) => {
     setTimeout(processQueue, interval - timeSinceLastRequest);
   };
 
-  return () => new Promise((resolve) => {
-    queue.push({ resolve });
-    processQueue();
-  });
+  return () =>
+    new Promise(resolve => {
+      queue.push({ resolve });
+      processQueue();
+    });
 };
 
 const requestRateLimiter = createRateLimiter(1000); // Limit requests to 1 per 1000 ms (1 second)

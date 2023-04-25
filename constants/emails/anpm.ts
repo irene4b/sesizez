@@ -8,4 +8,4 @@ export const ANPM = {
   'Iași - Iași': ['office@anpm.ro'],
   'Craiova - Dolj': ['office@anpm.ro'],
   'Cluj-Napoca - Cluj': ['office@anpm.ro'],
-}
+};

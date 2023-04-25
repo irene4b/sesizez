@@ -7,7 +7,10 @@ type Props = {
   lng: number;
 };
 
-const findNearbyRoads = async (lat: number, lng: number): Promise<string[] | null> => {
+const findNearbyRoads = async (
+  lat: number,
+  lng: number
+): Promise<string[] | null> => {
   const url = `https://nominatim.openstreetmap.org/search?format=json&lat=${lat}&lon=${lng}&street=*`;
   const response = await api.get(url, {
     headers: {
@@ -52,8 +55,7 @@ export const osmReverseLookup = async (
   if (nearbyRoads && nearbyRoads.length > 1) {
     // If there are at least two nearby roads, add intersection information
     adresaLinie1 += ` (pe langa intersectia dintre ${nearbyRoads[0]} si ${nearbyRoads[1]})`;
-  } 
-  else if (
+  } else if (
     response.data.addresstype === 'building' &&
     response.data.address.building
   )

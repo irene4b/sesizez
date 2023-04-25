@@ -22,7 +22,11 @@ const iluminatStradalInsuficientSauDefect = {
     );
   },
   destination: (localitate: string, judet: string) => {
-    return getAuthoritiesEmails(localitate, judet, 'primarie adp administratiaStrazilor');
+    return getAuthoritiesEmails(
+      localitate,
+      judet,
+      'primarie adp administratiaStrazilor'
+    );
   },
 };
 

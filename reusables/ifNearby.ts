@@ -1,5 +1,5 @@
-import { calculateCoordinateDistance } from "./geo";
-import { osmSearchNearby } from "./osmSearchNearby";
+import { calculateCoordinateDistance } from './geo';
+import { osmSearchNearby } from './osmSearchNearby';
 
 export const ifSchoolNearby = async (
   lat: number,
@@ -20,7 +20,7 @@ export const ifSchoolNearby = async (
     }
   }
 
-  return "";
+  return '';
 };
 
 export const ifMetroStationNearby = async (
@@ -28,7 +28,11 @@ export const ifMetroStationNearby = async (
   lng: number,
   callback: (stationName: string) => string
 ): Promise<string> => {
-  const metroStationsNearby = await osmSearchNearby({ lat, lng, query: 'subway entrance' });
+  const metroStationsNearby = await osmSearchNearby({
+    lat,
+    lng,
+    query: 'subway entrance',
+  });
 
   for (const station of metroStationsNearby) {
     const distance = calculateCoordinateDistance(
@@ -41,5 +45,5 @@ export const ifMetroStationNearby = async (
     }
   }
 
-  return "";
+  return '';
 };

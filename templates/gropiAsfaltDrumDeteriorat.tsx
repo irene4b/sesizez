@@ -22,7 +22,11 @@ const gropiAsfaltDrumDeteriorat = {
     );
   },
   destination: (localitate: string, judet: string) => {
-    return getAuthoritiesEmails(localitate, judet, 'primarie administratiaStrazilor');
+    return getAuthoritiesEmails(
+      localitate,
+      judet,
+      'primarie administratiaStrazilor'
+    );
   },
 };
 

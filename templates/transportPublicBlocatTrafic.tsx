@@ -10,7 +10,8 @@ const transportPublicBlocatTrafic: model = {
     const introduction = generateIntroduction(personal);
     const googleMapsLink = await generateOSMLink(location.lat, location.lng);
     const signature = generateSignature(personal);
-    return `${introduction}\n\n` + 
+    return (
+      `${introduction}\n\n` +
       `Vă scriu în legătură cu traficul intens din apropierea ${location.adresaLinie1} la orele de vârf, care afectează în special sutele (sau chiar miile) de oameni ce călătoresc cu modalitățile de transport în comun din zonă.\n\n` +
       `Pentru a incuraja oamenii să călătorească cu serviciile de transport în comun, fapt ce ar duce atât la reducerea traficului cât și la reducerea poluării din aerul pe care noi și copiii noștri îl respirăm, doresc următoarele:\n\n` +
       `- crearea unei benzi de circulație dedicată transportului în comun (autobuz, troleibuz, taxi, rideshare),\n` +
@@ -19,12 +20,17 @@ const transportPublicBlocatTrafic: model = {
       `Link locație: ${googleMapsLink}\n\n` +
       `Vă pun la dispoziție următoarele materiale ce dovedesc eficacitatea cererilor de mai sus:\n` +
       `https://uk-air.defra.gov.uk/assets/documents/reports/cat05/1004010934_MeasurementvsEmissionsTrends.pdf\n` +
-      `https://crowdsourced-transport.com/working-pages/improve-public-transport/traffic-signal-priority/\n\n` + 
-      `${signature}`;
+      `https://crowdsourced-transport.com/working-pages/improve-public-transport/traffic-signal-priority/\n\n` +
+      `${signature}`
+    );
   },
   destination: (localitate: string, judet: string) => {
-    return getAuthoritiesEmails(localitate, judet, 'politiaLocala primarie administratiaStrazilor transportDeSuprafata');
-  }
+    return getAuthoritiesEmails(
+      localitate,
+      judet,
+      'politiaLocala primarie administratiaStrazilor transportDeSuprafata'
+    );
+  },
 };
 
 export default transportPublicBlocatTrafic;

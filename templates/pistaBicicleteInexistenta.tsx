@@ -24,7 +24,11 @@ const pistaBicicleteInexistenta = {
     );
   },
   destination: (localitate: string, judet: string) => {
-    return getAuthoritiesEmails(localitate, judet, 'politiaLocala primarie adp administratiaStrazilor');
+    return getAuthoritiesEmails(
+      localitate,
+      judet,
+      'politiaLocala primarie adp administratiaStrazilor'
+    );
   },
 };
 

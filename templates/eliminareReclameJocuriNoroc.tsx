@@ -24,7 +24,12 @@ const eliminareReclameJocuriNoroc = {
       `- Reducerea expunerii la jocurile de noroc în rândul tinerilor și al comunității în general\n` +
       `- Crearea unui mediu mai sănătos și liniștit în cartier\n` +
       `- Promovarea unui stil de viață responsabil și echilibrat\n\n` +
-      await ifSchoolNearby(location.lat, location.lng, (schoolName => `Va rog sa tineti cont de faptul ca in apropiere se afla ${schoolName}, si consider ca expunerea copiilor la reclame catre jocuri de noroc nu este un lucru bun pentru dezvoltarea lor.\n\n`)) + 
+      (await ifSchoolNearby(
+        location.lat,
+        location.lng,
+        schoolName =>
+          `Va rog sa tineti cont de faptul ca in apropiere se afla ${schoolName}, si consider ca expunerea copiilor la reclame catre jocuri de noroc nu este un lucru bun pentru dezvoltarea lor.\n\n`
+      )) +
       `În calitate de cetățean preocupat, vă rog să luați în considerare eliminarea acestor bannere publicitare din cartierul nostru și să căutați alternative mai potrivite pentru a menține un mediu sănătos și liniștit pentru locuitori.\n\n` +
       `${signature}`
     );

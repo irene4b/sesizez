@@ -1,7 +1,15 @@
 import { model } from '../types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-export const IssueCard = ({ template, selected, onPress }: { template: model, selected: boolean, onPress: () => void }) => {
+export const IssueCard = ({
+  template,
+  selected,
+  onPress,
+}: {
+  template: model;
+  selected: boolean;
+  onPress: () => void;
+}) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={selected ? styles.cardSelected : styles.card}>
@@ -9,7 +17,7 @@ export const IssueCard = ({ template, selected, onPress }: { template: model, se
       </View>
     </TouchableOpacity>
   );
-}
+};
 
 const styles = StyleSheet.create({
   card: {
@@ -30,8 +38,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 19,
-    fontWeight: "600",
+    fontWeight: '600',
     color: '#fff',
   },
 });
-

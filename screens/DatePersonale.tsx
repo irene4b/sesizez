@@ -23,9 +23,10 @@ const genderOptions = [
   { text: 'Ambele', value: 'NBM' },
 ];
 
-const renderOption = (item: { text: string }, index: React.Key | null | undefined) => (
-  <Radio key={index}>{item.text}</Radio>
-);
+const renderOption = (
+  item: { text: string },
+  index: React.Key | null | undefined
+) => <Radio key={index}>{item.text}</Radio>;
 
 export default function DatePersonale() {
   const [nume, setNume] = React.useState('');
@@ -38,7 +39,6 @@ export default function DatePersonale() {
   const [gen, setGen] = React.useState('');
 
   const [selectedGenderIndex, setSelectedGenderIndex] = React.useState(-1);
-
 
   const navigation = useNavigation();
 
@@ -54,26 +54,26 @@ export default function DatePersonale() {
   };
 
   const getAllFromAsyncStorage = async () => {
-    AsyncStorage.getItem('nume').then((value) => setNume(value || ''));
-    AsyncStorage.getItem('prenume').then((value) => setPrenume(value || ''));
-    AsyncStorage.getItem('cnp').then((value) => setCNP(value || ''));
-    AsyncStorage.getItem('gen').then((value) =>{
+    AsyncStorage.getItem('nume').then(value => setNume(value || ''));
+    AsyncStorage.getItem('prenume').then(value => setPrenume(value || ''));
+    AsyncStorage.getItem('cnp').then(value => setCNP(value || ''));
+    AsyncStorage.getItem('gen').then(value => {
       setGen(value || '');
-      if(value) {
-        const index = genderOptions.findIndex((item) => item.value === value);
+      if (value) {
+        const index = genderOptions.findIndex(item => item.value === value);
         setSelectedGenderIndex(index);
       }
     });
-    AsyncStorage.getItem('adresaLinie1').then((value) =>
+    AsyncStorage.getItem('adresaLinie1').then(value =>
       setAdresaLinie1(value || '')
     );
-    AsyncStorage.getItem('adresaLinie2').then((value) =>
+    AsyncStorage.getItem('adresaLinie2').then(value =>
       setAdresaLinie2(value || '')
     );
-    AsyncStorage.getItem('localitate').then((value) =>
+    AsyncStorage.getItem('localitate').then(value =>
       setLocalitate(value || '')
     );
-    AsyncStorage.getItem('judet').then((value) => setJudet(value || ''));
+    AsyncStorage.getItem('judet').then(value => setJudet(value || ''));
   };
 
   useEffect(() => {
@@ -85,16 +85,14 @@ export default function DatePersonale() {
   }, [nume, prenume, cnp, adresaLinie1, adresaLinie2, localitate, judet, gen]);
 
   useEffect(() => {
-    setGen(
-      genderOptions[selectedGenderIndex]?.value || ''
-    )
-  }, [selectedGenderIndex])
+    setGen(genderOptions[selectedGenderIndex]?.value || '');
+  }, [selectedGenderIndex]);
 
   const useCurrentLocation = async () => {
     const currentLocation = await getCurrentLocation();
     if (currentLocation) {
       setAdresaLinie1(currentLocation.adresaLinie1);
-      if(currentLocation.localitate === 'Bucharest') {
+      if (currentLocation.localitate === 'Bucharest') {
         currentLocation.localitate = 'Bucuresti';
       }
       setLocalitate(currentLocation.localitate);
@@ -107,7 +105,7 @@ export default function DatePersonale() {
     Alert.alert('Datele au fost salvate.', '', [
       { text: 'OK', onPress: () => navigation.goBack() },
     ]);
-  };  
+  };
 
   return (
     <KeyboardAvoidingView
@@ -130,26 +128,26 @@ export default function DatePersonale() {
             label="Nume de familie"
             value={nume}
             style={styles.margin}
-            onChangeText={(newNume) => setNume(newNume)}
+            onChangeText={newNume => setNume(newNume)}
           />
           <Input
             placeholder="Scrie aici..."
             label="Prenume"
             value={prenume}
             style={styles.margin}
-            onChangeText={(newPrenume) => setPrenume(newPrenume)}
+            onChangeText={newPrenume => setPrenume(newPrenume)}
           />
           <Input
             placeholder="Scrie aici..."
             label="CNP"
             value={cnp}
-            onChangeText={(newCNP) => setCNP(newCNP)}
+            onChangeText={newCNP => setCNP(newCNP)}
           />
           <Text style={styles.title}>Gen:</Text>
           <RadioGroup
             selectedIndex={selectedGenderIndex}
-            onChange={(index) => {
-              setSelectedGenderIndex(index)
+            onChange={index => {
+              setSelectedGenderIndex(index);
             }}
           >
             {genderOptions.map(renderOption)}
@@ -167,28 +165,28 @@ export default function DatePersonale() {
             label="Adresa linie 1"
             value={adresaLinie1}
             style={styles.margin}
-            onChangeText={(newAdresaLinie1) => setAdresaLinie1(newAdresaLinie1)}
+            onChangeText={newAdresaLinie1 => setAdresaLinie1(newAdresaLinie1)}
           />
           <Input
             placeholder="(Dacă e cazul) bloc, scară, apt, etaj"
             label="Adresa linie 2"
             value={adresaLinie2}
             style={styles.margin}
-            onChangeText={(newAdresaLinie2) => setAdresaLinie2(newAdresaLinie2)}
+            onChangeText={newAdresaLinie2 => setAdresaLinie2(newAdresaLinie2)}
           />
           <Input
             placeholder="Scrie aici..."
             label="Localitate"
             value={localitate}
             style={styles.margin}
-            onChangeText={(newLocalitate) => setLocalitate(newLocalitate)}
+            onChangeText={newLocalitate => setLocalitate(newLocalitate)}
           />
           <Input
             placeholder="Scrie aici..."
             label="Județ sau sector"
             value={judet}
             style={styles.margin}
-            onChangeText={(newJudet) => setJudet(newJudet)}
+            onChangeText={newJudet => setJudet(newJudet)}
           />
           <Button onPress={saveAndAlert}>Salvează datele</Button>
           <View

@@ -83,13 +83,10 @@ export default function DespreScreen() {
       </Text>
       <Text
         style={styles.subtitle}
-        onPress={() =>
-          Linking.openURL(
-            'https://osm.org/copyright'
-          )
-        }
+        onPress={() => Linking.openURL('https://osm.org/copyright')}
       >
-        Reverse Lookup Data &copy; OpenStreetMap contributors, ODbL 1.0, osm.org/copyright
+        Reverse Lookup Data &copy; OpenStreetMap contributors, ODbL 1.0,
+        osm.org/copyright
       </Text>
     </View>
   );
