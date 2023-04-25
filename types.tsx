@@ -19,6 +19,8 @@ declare global {
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   'Date Personale': undefined;
+  'Pasul 2': undefined;
+  'Invita Prieteni': undefined;
   NotFound: undefined;
 };
 
@@ -69,4 +71,5 @@ export type model = {
     location: reportedLocation
   ) => Promise<string>;
   destination: (localitate: string, judet: string) => string[];
+  showNextStep?: boolean;
 };

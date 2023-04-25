@@ -27,6 +27,7 @@ export default function SesizareNoua({
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortedTemplates, setSortedTemplates] = useState(templates);
+  const [count, setCount] = useState(0);
 
   const checkLocalStorage = async () => {
     // get all required fields from local storage and show modal if not set
@@ -50,7 +51,12 @@ export default function SesizareNoua({
 
   useEffect(() => {
     checkLocalStorage();
+    AsyncStorage.getItem('count').then(value => setCount(Number(value) || 0));
   }, []);
+
+  useEffect(() => {
+    AsyncStorage.setItem('count', count.toString());
+  }, [count]);
 
   useEffect(() => {
     sortTemplatesByUsage();
@@ -120,6 +126,12 @@ export default function SesizareNoua({
       selectedIndex,
       sortedTemplates
     );
+    if (sortedTemplates[selectedIndex].showNextStep) {
+      navigation.navigate('Pasul 2');
+    } else if (count === 4) {
+      navigation.navigate('Invita Prieteni');
+    }
+    setCount(curr => curr + 1);
     resetState();
   };
 

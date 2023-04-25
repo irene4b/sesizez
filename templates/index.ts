@@ -20,8 +20,9 @@ import lipsaCopaci from './lipsaCopaci';
 import cerereMarcajVirajStangaBiciclete from './cerereMarcajVirajStangaBiciclete';
 import instalareParcariBiciclete from './instalareParcariBiciclete';
 import imbunatatireIntersectiiPisteBiciclete from './imbunatatireIntersectiiPisteBiciclete';
+import { model } from '../types';
 
-export const templates = [
+export const templates: model[] = [
   trotuarBlocatMasini,
   trotuarDegradat,
   trecerePietoniVopseaStearsa,

@@ -26,6 +26,8 @@ import {
   RootTabScreenProps,
 } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import ContactBrigadaRutiera from '../screens/ContactBrigadaRutiera';
+import RecommendApp from '../screens/RecommendApp';
 
 export default function Navigation({
   colorScheme,
@@ -63,6 +65,8 @@ function RootNavigator() {
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Date Personale" component={DatePersonale} />
+        <Stack.Screen name="Pasul 2" component={ContactBrigadaRutiera} />
+        <Stack.Screen name="Invita Prieteni" component={RecommendApp} />
       </Stack.Group>
     </Stack.Navigator>
   );

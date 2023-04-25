@@ -37,6 +37,7 @@ const trotuarBlocatMasini = {
       'politiaLocala brigadaRutiera'
     );
   },
+  showNextStep: true,
 };
 
 export default trotuarBlocatMasini;

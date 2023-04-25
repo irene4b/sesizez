@@ -37,6 +37,7 @@ const masiniParcateTrecere = {
       'politiaLocala brigadaRutiera'
     );
   },
+  showNextStep: true,
 };
 
 export default masiniParcateTrecere;
