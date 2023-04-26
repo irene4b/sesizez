@@ -9,7 +9,7 @@ Toate datele sunt stocate local iar email-urile pentru sesizări sunt generate p
 [![googleplay](https://user-images.githubusercontent.com/17914968/165262561-1299a536-5cc4-49bf-aba5-f7f8802c8c68.png)](https://play.google.com/store/apps/details?id=com.eumeo.sesizez)
 
 
-## Acum si pe iOS, prin [TestFlight](https://testflight.apple.com/join/fF7IqRnB). In curand si pe App Store.
+**Acum si pe iOS, prin [TestFlight](https://testflight.apple.com/join/fF7IqRnB). In curand si pe App Store.**
 
 
 [Click aici](https://github.com/alexbulintis/sesizez/releases) pentru a descărca un apk din ultimul release de pe Github.
