@@ -32,7 +32,8 @@
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Aplicația are nevoie de acces la fotografii pentru a atașa dovezile.",
         "NSCameraUsageDescription": "Aplicația are nevoie de acces la camera foto pentru a atașa dovezile.",
-        "NSMicrophoneUsageDescription": "Aplicatia are nevoie de acces la microfon, acesta fiind necesar pentru filmare."
+        "NSMicrophoneUsageDescription": "Aplicatia are nevoie de acces la microfon, acesta fiind necesar pentru filmare.",
+        "NSLocationWhenInUseUsageDescription": "Aplicația utilizează locația ta pentru a determina locația sesizărilor și către ce autorități trebuie trimis mesajul."
       }
     },
     "android": {
