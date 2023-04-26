@@ -29,6 +29,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.eumeo.sesizez",
+      "buildNumber": 2,
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Aplicația are nevoie de acces la fotografii pentru a atașa dovezile.",
         "NSCameraUsageDescription": "Aplicația are nevoie de acces la camera foto pentru a atașa dovezile.",
