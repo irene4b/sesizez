@@ -1,6 +1,6 @@
-Data ultimei actualizări: 25 Aprilie 2023
+Data ultimei actualizări: 26 Aprilie 2023
 
-Această politică de confidențialitate explică modul în care Aplicația Sesizez, o aplicație FOSS (Free and Open Source Software) deținută de contribuitori și publicată de Ștefan Alexandru Bulințiș, colectează, utilizează și protejează informațiile utilizatorilor săi.
+Această politică de confidențialitate explică modul în care Aplicația Sesizez, o aplicație FOSS (Free and Open Source Software) deținută de contribuitori și publicată de Ștefan Alexandru Bulintiș, colectează, utilizează și protejează informațiile utilizatorilor săi.
 
 ### Informații colectate
 
