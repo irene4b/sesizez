@@ -4,7 +4,7 @@
     "name": "Sesizez",
     "slug": "sesizez",
     "owner": "alexbulintis0",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "sesizez",
@@ -29,7 +29,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.eumeo.sesizez",
-      "buildNumber": 2,
+      "buildNumber": 3,
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Aplicația are nevoie de acces la fotografii pentru a atașa dovezile.",
         "NSCameraUsageDescription": "Aplicația are nevoie de acces la camera foto pentru a atașa dovezile.",
@@ -52,7 +52,7 @@
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.eumeo.sesizez",
-      "versionCode": 10
+      "versionCode": 11
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
