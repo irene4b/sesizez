@@ -46,7 +46,6 @@ export type userPersonalData = {
   gen: string;
   judet: string;
   localitate: string;
-  cnp: string;
 };
 
 export type reportedLocation = {

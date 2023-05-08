@@ -31,7 +31,6 @@ function getGreeting() {
 const getPersonalData = async () => ({
   nume: (await AsyncStorage.getItem('nume')) || '',
   prenume: (await AsyncStorage.getItem('prenume')) || '',
-  cnp: (await AsyncStorage.getItem('cnp')) || '',
   adresaLinie1: (await AsyncStorage.getItem('adresaLinie1')) || '',
   adresaLinie2: (await AsyncStorage.getItem('adresaLinie2')) || '',
   localitate: (await AsyncStorage.getItem('localitate')) || '',

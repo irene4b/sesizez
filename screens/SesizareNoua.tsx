@@ -34,7 +34,6 @@ export default function SesizareNoua({
     const localStorageArr = await AsyncStorage.multiGet([
       'nume',
       'prenume',
-      'cnp',
       'adresaLinie1',
       'localitate',
       'judet',

@@ -1,7 +1,7 @@
 import { userPersonalData } from '../types';
 
 const generateIntroduction = (personal: userPersonalData) => {
-  const { nume, prenume, gen, cnp, adresaLinie1, localitate, judet } = personal;
+  const { nume, prenume, gen, adresaLinie1, localitate, judet } = personal;
 
   let prefix = '';
 
@@ -21,7 +21,7 @@ const generateIntroduction = (personal: userPersonalData) => {
       break;
   }
 
-  return `${prefix} ${nume} ${prenume}, cu domiciliul în ${localitate}, ${judet}, ${adresaLinie1}, CNP ${cnp}, formulez prezenta sesizare:`;
+  return `${prefix} ${nume} ${prenume}, cu domiciliul în ${localitate}, ${judet}, ${adresaLinie1}, formulez prezenta sesizare:`;
 };
 
 export default generateIntroduction;
