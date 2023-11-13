@@ -7,11 +7,11 @@ Toate datele sunt stocate local iar email-urile pentru sesizări sunt generate p
 
 # Instalare
 [![googleplay](https://user-images.githubusercontent.com/17914968/165262561-1299a536-5cc4-49bf-aba5-f7f8802c8c68.png)](https://play.google.com/store/apps/details?id=com.eumeo.sesizez)
-
-
-**Acum si pe iOS, prin [TestFlight](https://testflight.apple.com/join/fF7IqRnB). In curand si pe App Store.**
+[<img src="https://user-images.githubusercontent.com/17914968/282571308-9ccd0a91-0057-4e4c-b4d5-3d9f7bb6a5af.svg" alt="App store" height="89"/>](https://apps.apple.com/ro/app/sesizez/id6448241968)
 
 
 [Click aici](https://github.com/alexbulintis/sesizez/releases) pentru a descărca un apk din ultimul release de pe Github.
 
 [Politica de confidentialitate](https://github.com/alexbulintis/sesizez/blob/gh-pages/privacy.md)
+
+<meta name="apple-itunes-app" content="app-id=6448241968">
