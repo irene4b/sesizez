@@ -13,5 +13,3 @@ Toate datele sunt stocate local iar email-urile pentru sesizări sunt generate p
 [Click aici](https://github.com/alexbulintis/sesizez/releases) pentru a descărca un apk din ultimul release de pe Github.
 
 [Politica de confidentialitate](https://github.com/alexbulintis/sesizez/blob/gh-pages/privacy.md)
-
-<meta name="apple-itunes-app" content="app-id=6448241968">
